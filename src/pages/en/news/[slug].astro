@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import NewsPostPage from '../../../components/NewsPostPage.astro';
+import { news } from '../../../i18n/news';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news', ({ data }) => data.lang === 'en' && !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/^en\//, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const t = news.en;
+---
+
+<Layout
+  title={`${post.data.title} | Oilkey Corporation`}
+  description={t.meta.description}
+  lang="en"
+  ogType="article"
+>
+  <NewsPostPage lang="en" post={post} />
+</Layout>

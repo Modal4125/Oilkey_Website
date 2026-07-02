@@ -1,0 +1,169 @@
+---
+import PageHeader from './PageHeader.astro';
+import SpecPanel from './SpecPanel.astro';
+import SpecRow from './SpecRow.astro';
+import Button from './Button.astro';
+import { contact } from '../i18n/contact';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = contact[lang];
+
+const inputClass =
+  'w-full rounded-xs border border-line bg-panel px-3.5 py-2.5 text-sm transition-colors focus:border-blueprint focus:ring-1 focus:ring-blueprint focus:outline-none';
+const labelClass = 'mb-1.5 flex items-center text-sm font-medium';
+const requiredBadge =
+  'ml-2 rounded-xs border border-amber px-1.5 py-px font-mono text-[10px] text-amber';
+---
+
+<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
+
+<section class="py-20">
+  <div class="wrap grid items-start gap-16 lg:grid-cols-[1.1fr_0.9fr]">
+    <div>
+      <div
+        id="form-success"
+        hidden
+        class="border-blueprint bg-blueprint/5 text-blueprint mb-8 rounded-xs border px-5 py-4 text-sm"
+      >
+        {t.form.postSubmit}
+      </div>
+      <div
+        id="form-error-validation"
+        hidden
+        class="border-amber bg-amber/5 text-amber mb-8 rounded-xs border px-5 py-4 text-sm"
+      >
+        {t.form.errorValidation}
+      </div>
+      <div
+        id="form-error-server"
+        hidden
+        class="border-amber bg-amber/5 text-amber mb-8 rounded-xs border px-5 py-4 text-sm"
+      >
+        {t.form.errorServer}
+      </div>
+
+      <form class="space-y-6" method="post" action="/api/contact">
+        <input type="hidden" name="lang" value={lang} />
+        <div class="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
+          <label for="contact-website">Website</label>
+          <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label for="contact-name" class={labelClass}>
+              {t.form.name}<span class={requiredBadge}>{t.form.required}</span>
+            </label>
+            <input id="contact-name" name="name" type="text" required class={inputClass} />
+          </div>
+          <div>
+            <label for="contact-company" class={labelClass}>
+              {t.form.company}<span class={requiredBadge}>{t.form.required}</span>
+            </label>
+            <input id="contact-company" name="company" type="text" required class={inputClass} />
+          </div>
+        </div>
+
+        <div>
+          <label for="contact-department" class={labelClass}>{t.form.department}</label>
+          <input id="contact-department" name="department" type="text" class={inputClass} />
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <label for="contact-email" class={labelClass}>
+              {t.form.email}<span class={requiredBadge}>{t.form.required}</span>
+            </label>
+            <input id="contact-email" name="email" type="email" required class={inputClass} />
+          </div>
+          <div>
+            <label for="contact-phone" class={labelClass}>{t.form.phone}</label>
+            <input id="contact-phone" name="phone" type="tel" class={inputClass} />
+          </div>
+        </div>
+
+        <div>
+          <label for="contact-type" class={labelClass}>
+            {t.form.inquiryType}<span class={requiredBadge}>{t.form.required}</span>
+          </label>
+          <select id="contact-type" name="inquiryType" required class={inputClass}>
+            <option value="">{t.form.selectPlaceholder}</option>
+            {t.form.inquiryOptions.map((option) => <option value={option}>{option}</option>)}
+          </select>
+        </div>
+
+        <fieldset>
+          <legend class={labelClass}>{t.form.products}</legend>
+          <div class="grid gap-2 sm:grid-cols-2">
+            {
+              t.form.productOptions.map((option) => (
+                <label class="flex items-center gap-2.5 text-sm">
+                  <input
+                    type="checkbox"
+                    name="products"
+                    value={option}
+                    class="border-line accent-blueprint h-4 w-4 rounded-xs"
+                  />
+                  {option}
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+
+        <div>
+          <label for="contact-message" class={labelClass}>
+            {t.form.message}<span class={requiredBadge}>{t.form.required}</span>
+          </label>
+          <textarea id="contact-message" name="message" rows="6" required class={inputClass}
+          ></textarea>
+        </div>
+
+        <label class="flex items-start gap-2.5 text-sm">
+          <input
+            type="checkbox"
+            name="consent"
+            required
+            class="border-line accent-blueprint mt-1 h-4 w-4 rounded-xs"
+          />
+          <span>
+            {t.form.consentText}<span class={requiredBadge}>{t.form.required}</span><br />
+            <a href="#" class="hover:text-blueprint underline">{t.form.consentLink}</a>
+          </span>
+        </label>
+
+        <Button type="submit">{t.form.submit}</Button>
+      </form>
+    </div>
+
+    <SpecPanel tone="light" title={t.panel.title}>
+      <SpecRow k={t.panel.addressLabel} v={t.panel.address} />
+      <SpecRow k={t.panel.telLabel} v={t.panel.tel} mono />
+      <SpecRow k={t.panel.hoursLabel} v={t.panel.hours} />
+      <SpecRow k={t.panel.faxLabel} v={t.panel.fax} mono />
+      <SpecRow k={t.panel.emailLabel} mono>
+        <a href={`mailto:${t.panel.email}`} class="hover:text-blueprint">{t.panel.email}</a>
+      </SpecRow>
+    </SpecPanel>
+  </div>
+</section>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  let bannerId: string | null = null;
+  if (params.get('sent') === '1') bannerId = 'form-success';
+  else if (params.get('error') === 'validation') bannerId = 'form-error-validation';
+  else if (params.get('error') === 'server') bannerId = 'form-error-server';
+
+  if (bannerId) {
+    const banner = document.getElementById(bannerId);
+    if (banner) {
+      banner.hidden = false;
+      banner.scrollIntoView({ block: 'center' });
+    }
+  }
+</script>

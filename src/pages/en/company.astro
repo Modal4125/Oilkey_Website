@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CompanyPage from '../../components/CompanyPage.astro';
+import { company } from '../../i18n/company';
+
+const t = company.en;
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang="en">
+  <CompanyPage lang="en" />
+</Layout>

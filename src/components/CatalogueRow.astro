@@ -1,0 +1,28 @@
+---
+interface Props {
+  badge: string;
+  title: string;
+  meta: string;
+  href: string;
+  label: string;
+}
+
+const { badge, title, meta, href, label } = Astro.props;
+---
+
+<div class="border-line flex items-center justify-between border-t px-6 py-5 first:border-t-0">
+  <div class="flex items-center gap-[18px]">
+    <span
+      class="border-blueprint text-blueprint rounded-xs border px-[7px] py-1 font-mono text-[10px] font-semibold"
+    >
+      {badge}
+    </span>
+    <div>
+      <div class="text-sm font-medium">{title}</div>
+      <div class="text-steel-light mt-[3px] font-mono text-[11px]">{meta}</div>
+    </div>
+  </div>
+  <a href={href} class="text-ink hover:text-blueprint flex items-center gap-2 font-mono text-xs">
+    {label}
+  </a>
+</div>

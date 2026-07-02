@@ -1,0 +1,9 @@
+dist/
+.astro/
+node_modules/
+.claude/
+
+# project reference docs, not app source — leave formatting alone
+homepage-mockup.html
+page-copy.md
+claude-code-prompts.md

@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import PageHeader from './PageHeader.astro';
+import Eyebrow from './Eyebrow.astro';
+import CatalogueRow from './CatalogueRow.astro';
+import { catalogue } from '../i18n/catalogue';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = catalogue[lang];
+
+const entries = (
+  await getCollection('catalogue', ({ data }) => data.lang === lang && !data.draft)
+).sort((a, b) => a.data.order - b.data.order || a.data.title.localeCompare(b.data.title));
+
+// Group by category, preserving the order-derived sequence of first appearance.
+const groups = new Map<string, typeof entries>();
+for (const entry of entries) {
+  const group = groups.get(entry.data.category) ?? [];
+  group.push(entry);
+  groups.set(entry.data.category, group);
+}
+---
+
+<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
+
+<section class="py-20">
+  <div class="wrap space-y-12">
+    {
+      [...groups.entries()].map(([category, items]) => (
+        <div>
+          <Eyebrow class="mb-4">{category}</Eyebrow>
+          <div class="border-line bg-panel border">
+            {items.map((entry) => (
+              <CatalogueRow
+                badge={entry.data.badge}
+                title={entry.data.title}
+                meta={[entry.data.note, entry.data.size].filter(Boolean).join(' — ')}
+                href={entry.data.file}
+                label={t.download}
+              />
+            ))}
+          </div>
+        </div>
+      ))
+    }
+    {entries.length === 0 && <p class="text-steel text-sm">{t.empty}</p>}
+  </div>
+</section>

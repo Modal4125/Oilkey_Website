@@ -1,0 +1,26 @@
+---
+import { formatNewsDate } from '../lib/date';
+
+interface Props {
+  date: Date;
+  tag: string;
+  title: string;
+  href: string;
+}
+
+const { date, tag, title, href } = Astro.props;
+---
+
+<a href={href} class="group border-line flex gap-7 border-t py-[22px] first:border-t-0">
+  <div class="text-steel-light w-[100px] shrink-0 pt-0.5 font-mono text-xs">
+    {formatNewsDate(date)}
+  </div>
+  <div>
+    <span
+      class="border-blueprint text-blueprint mr-3 rounded-xs border px-2 py-0.5 font-mono text-[10px]"
+    >
+      {tag}
+    </span>
+    <span class="group-hover:text-blueprint text-sm transition-colors">{title}</span>
+  </div>
+</a>

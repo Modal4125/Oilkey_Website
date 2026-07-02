@@ -1,0 +1,11 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import NewsListPage from '../../../components/NewsListPage.astro';
+import { news } from '../../../i18n/news';
+
+const t = news.en;
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang="en">
+  <NewsListPage lang="en" />
+</Layout>

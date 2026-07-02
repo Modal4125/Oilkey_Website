@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactPage from '../components/ContactPage.astro';
+import { contact } from '../i18n/contact';
+
+const t = contact.ja;
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang="ja">
+  <ContactPage lang="ja" />
+</Layout>

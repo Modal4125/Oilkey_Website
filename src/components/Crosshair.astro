@@ -1,0 +1,51 @@
+---
+interface Props {
+  size?: 'md' | 'sm';
+  class?: string;
+}
+
+const { size = 'md', class: className } = Astro.props;
+---
+
+<span class:list={['xhair', size === 'sm' && 'sm', className]} aria-hidden="true"></span>
+
+<style>
+  .xhair {
+    position: relative;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+  }
+  .xhair::before,
+  .xhair::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+  }
+  .xhair::before {
+    left: 6px;
+    top: 0;
+    width: 2px;
+    height: 14px;
+  }
+  .xhair::after {
+    top: 6px;
+    left: 0;
+    width: 14px;
+    height: 2px;
+  }
+  .xhair.sm {
+    width: 10px;
+    height: 10px;
+  }
+  .xhair.sm::before {
+    width: 1.5px;
+    height: 10px;
+    left: 4.25px;
+  }
+  .xhair.sm::after {
+    height: 1.5px;
+    width: 10px;
+    top: 4.25px;
+  }
+</style>

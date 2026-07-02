@@ -1,0 +1,59 @@
+---
+import Crosshair from './Crosshair.astro';
+
+interface Props {
+  title: string;
+  rows?: { k: string; v: string }[];
+  /** dark = mockup hero styling; light = same anatomy on light backgrounds */
+  tone?: 'dark' | 'light';
+  class?: string;
+}
+
+const { title, rows = [], tone = 'dark', class: className } = Astro.props;
+const isDark = tone === 'dark';
+
+const corners = [
+  '-top-[7px] -left-[7px]',
+  '-top-[7px] -right-[7px]',
+  '-bottom-[7px] -left-[7px]',
+  '-bottom-[7px] -right-[7px]',
+];
+---
+
+<div
+  class:list={[
+    'relative rounded-xs border px-[26px] py-7',
+    isDark ? 'border-white/[0.16] bg-white/[0.04]' : 'border-line bg-panel',
+    className,
+  ]}
+>
+  {
+    corners.map((pos) => (
+      <span class:list={['absolute flex', pos]}>
+        <Crosshair class={isDark ? 'text-white/50' : 'text-steel-light'} />
+      </span>
+    ))
+  }
+  <h3
+    class:list={[
+      'mb-[18px] font-mono text-[11px] font-medium tracking-[0.12em] uppercase',
+      isDark ? 'text-steel-light' : 'text-steel',
+    ]}
+  >
+    {title}
+  </h3>
+  {
+    rows.map(({ k, v }) => (
+      <div
+        class:list={[
+          'flex justify-between border-t py-3 text-[13px] first-of-type:border-t-0',
+          isDark ? 'border-white/10' : 'border-line',
+        ]}
+      >
+        <span class={isDark ? 'text-[#9aa3a8]' : 'text-steel'}>{k}</span>
+        <span class:list={['font-mono font-medium', isDark ? 'text-white' : 'text-ink']}>{v}</span>
+      </div>
+    ))
+  }
+  <slot />
+</div>

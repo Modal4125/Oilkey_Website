@@ -1,0 +1,35 @@
+---
+interface Props {
+  href?: string;
+  /** Rendered as <button type={type}> when no href is given */
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'outline';
+  /** Background context for the outline variant */
+  tone?: 'dark' | 'light';
+  class?: string;
+}
+
+const { href, type = 'button', variant = 'primary', tone = 'dark', class: className } = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const variantClasses =
+  variant === 'primary'
+    ? 'bg-amber text-ink hover:bg-amber-bright'
+    : tone === 'dark'
+      ? 'border border-white/40 text-white hover:border-white'
+      : 'border border-line-dark text-ink hover:border-ink';
+---
+
+<Tag
+  href={href}
+  type={href ? undefined : type}
+  class:list={[
+    'inline-flex items-center gap-2.5 rounded-xs px-[26px] py-3.5 font-mono text-[13px] font-medium tracking-[0.04em] transition-[transform,background-color,border-color] duration-150 hover:-translate-y-0.5',
+    !href && 'cursor-pointer',
+    variantClasses,
+    className,
+  ]}
+>
+  <slot />
+</Tag>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  body: string;
+  href: string;
+  linkLabel: string;
+}
+
+const { icon, title, body, href, linkLabel } = Astro.props;
+---
+
+<a
+  href={href}
+  class="border-line bg-panel hover:border-blueprint block border px-[22px] py-[26px] transition-[border-color,transform] duration-150 hover:-translate-y-[3px]"
+>
+  <div class="border-ink mb-5 flex h-11 w-11 items-center justify-center rounded-xs border-[1.5px]">
+    {icon}
+  </div>
+  <h3 class="mb-2 text-base">{title}</h3>
+  <p class="text-steel mb-4 text-[13px]">{body}</p>
+  <span class="text-blueprint font-mono text-xs font-medium">{linkLabel}</span>
+</a>

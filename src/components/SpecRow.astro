@@ -1,0 +1,16 @@
+---
+// Definition-list style row for SpecPanel slots — for long values (addresses,
+// business descriptions) that don't fit the right-aligned mono row layout.
+interface Props {
+  k: string;
+  v?: string;
+  mono?: boolean;
+}
+
+const { k, v, mono = false } = Astro.props;
+---
+
+<div class="border-line flex flex-col gap-0.5 border-t py-3 first-of-type:border-t-0 sm:flex-row">
+  <span class="text-steel shrink-0 text-[13px] sm:w-[140px]">{k}</span>
+  <span class:list={['flex-1 text-sm', mono && 'font-mono']}>{v}<slot /></span>
+</div>

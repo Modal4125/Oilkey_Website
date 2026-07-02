@@ -1,0 +1,46 @@
+---
+import PageHeader from './PageHeader.astro';
+import { business } from '../i18n/business';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = business[lang];
+---
+
+<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
+
+<section class="py-20">
+  <div class="wrap">
+    <div class="border-line bg-line grid gap-px border lg:grid-cols-3">
+      {
+        t.pillars.map((pillar) => (
+          <div class="bg-panel px-[30px] py-9">
+            <div class="text-amber mb-4 font-mono text-xs">{pillar.tag}</div>
+            <h3 class="mb-3 text-[19px] font-bold">{pillar.title}</h3>
+            <div class="text-steel space-y-3 text-sm">
+              {pillar.paras.map((para) => (
+                <p>{para}</p>
+              ))}
+            </div>
+            {pillar.items && (
+              <ul class="mt-4">
+                {pillar.items.map((item) => (
+                  <li class="border-line text-steel border-t py-2.5 text-sm first:border-t-0">
+                    {item.label && <strong class="text-ink font-medium">{item.label}</strong>}
+                    {item.label && ' — '}
+                    {item.text}
+                  </li>
+                ))}
+              </ul>
+            )}
+            {pillar.after && <p class="text-steel mt-4 text-sm">{pillar.after}</p>}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

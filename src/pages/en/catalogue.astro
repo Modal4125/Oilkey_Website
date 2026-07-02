@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CataloguePage from '../../components/CataloguePage.astro';
+import { catalogue } from '../../i18n/catalogue';
+
+const t = catalogue.en;
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang="en">
+  <CataloguePage lang="en" />
+</Layout>

@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import '@fontsource/noto-sans-jp/400.css';
+import '@fontsource/noto-sans-jp/500.css';
+import '@fontsource/noto-sans-jp/700.css';
+import '@fontsource/zen-kaku-gothic-new/500.css';
+import '@fontsource/zen-kaku-gothic-new/700.css';
+import '@fontsource/zen-kaku-gothic-new/900.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '@fontsource/ibm-plex-mono/600.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'ja' | 'en';
+  /** Open Graph object type; news posts pass "article" */
+  ogType?: 'website' | 'article';
+  /** Path to a social-preview image (1200×630), e.g. /og.png */
+  ogImage?: string;
+}
+
+const { title, description, lang, ogType = 'website', ogImage } = Astro.props;
+
+const site = Astro.site!;
+const normalize = (p: string) => (p !== '/' && p.endsWith('/') ? p.slice(0, -1) : p);
+const path = normalize(Astro.url.pathname);
+// Language-neutral path: strip the /en prefix, then rebuild both variants.
+const basePath = normalize(path.replace(/^\/en(?=\/|$)/, '') || '/');
+const canonicalURL = new URL(path, site);
+const jaURL = new URL(basePath, site);
+const enURL = new URL(basePath === '/' ? '/en' : `/en${basePath}`, site);
+const ogLocale = lang === 'en' ? 'en_US' : 'ja_JP';
+const ogLocaleAlternate = lang === 'en' ? 'ja_JP' : 'en_US';
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <title>{title}</title>
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="ja" href={jaURL} />
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="x-default" href={jaURL} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Oilkey Corporation" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale:alternate" content={ogLocaleAlternate} />
+    {ogImage && <meta property="og:image" content={new URL(ogImage, site)} />}
+    <meta name="twitter:card" content="summary" />
+  </head>
+  <body>
+    <Header lang={lang} />
+    <slot />
+    <Footer lang={lang} />
+  </body>
+</html>
