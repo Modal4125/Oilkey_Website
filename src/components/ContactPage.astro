@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import PageHeader from './PageHeader.astro';
 import SpecPanel from './SpecPanel.astro';
 import SpecRow from './SpecRow.astro';
@@ -12,6 +13,7 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = contact[lang];
+const privacyUrl = getRelativeLocaleUrl(lang, '/privacy');
 
 // text-base on mobile: iOS Safari auto-zooms the page when focusing a field
 // whose font-size is under 16px.
@@ -134,7 +136,9 @@ const requiredBadge =
           />
           <span>
             {t.form.consentText}<span class={requiredBadge}>{t.form.required}</span><br />
-            <a href="#" class="hover:text-blueprint underline">{t.form.consentLink}</a>
+            <a href={privacyUrl} target="_blank" class="hover:text-blueprint underline">
+              {t.form.consentLink}
+            </a>
           </span>
         </label>
 

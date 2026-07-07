@@ -1,0 +1,57 @@
+---
+import { getEntry, render } from 'astro:content';
+import PageHeader from './PageHeader.astro';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+  /** Entry id within the pages collection, e.g. "ja/privacy" */
+  id: string;
+  eyebrow: string;
+  heading: string;
+}
+
+const { lang, id, eyebrow, heading } = Astro.props;
+
+const entry = await getEntry('pages', id);
+if (!entry || entry.data.lang !== lang) {
+  throw new Error(`pages entry "${id}" missing or wrong locale`);
+}
+const { Content } = await render(entry);
+---
+
+<PageHeader eyebrow={eyebrow} heading={heading} />
+
+<section class="py-14 lg:py-20">
+  <div class="mx-auto max-w-[820px] px-8">
+    <article class="page-body text-[15px]">
+      <Content />
+    </article>
+  </div>
+</section>
+
+<style>
+  .page-body :global(p) {
+    margin-bottom: 1.4em;
+  }
+  .page-body :global(h2) {
+    font-size: 19px;
+    margin: 2em 0 0.7em;
+  }
+  .page-body :global(ul),
+  .page-body :global(ol) {
+    margin-bottom: 1.4em;
+    padding-left: 1.6em;
+    list-style: disc;
+  }
+  .page-body :global(ol) {
+    list-style: decimal;
+  }
+  .page-body :global(li) {
+    margin-bottom: 0.3em;
+  }
+  .page-body :global(a) {
+    color: var(--color-blueprint);
+    text-decoration: underline;
+  }
+</style>

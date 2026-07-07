@@ -20,6 +20,7 @@ const { lang } = Astro.props;
 const t = home[lang];
 const contactUrl = getRelativeLocaleUrl(lang, '/contact');
 const newsListUrl = getRelativeLocaleUrl(lang, '/news');
+const catalogueUrl = getRelativeLocaleUrl(lang, '/catalogue');
 
 const latestPosts = (await getCollection('news', ({ data }) => data.lang === lang && !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -126,7 +127,7 @@ const postUrl = (id: string) => getRelativeLocaleUrl(lang, `/news/${id.replace(/
             badge={row.badge}
             title={row.title}
             meta={row.meta}
-            href="#"
+            href={catalogueUrl}
             label={t.catalogue.download}
           />
         ))
