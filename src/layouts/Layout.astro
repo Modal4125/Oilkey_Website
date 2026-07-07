@@ -3,12 +3,11 @@ import '../styles/global.css';
 import '@fontsource/noto-sans-jp/400.css';
 import '@fontsource/noto-sans-jp/500.css';
 import '@fontsource/noto-sans-jp/700.css';
-import '@fontsource/zen-kaku-gothic-new/500.css';
-import '@fontsource/zen-kaku-gothic-new/700.css';
-import '@fontsource/zen-kaku-gothic-new/900.css';
-import '@fontsource/ibm-plex-mono/400.css';
-import '@fontsource/ibm-plex-mono/500.css';
-import '@fontsource/ibm-plex-mono/600.css';
+import '@fontsource/noto-serif-jp/600.css';
+import '@fontsource/noto-serif-jp/700.css';
+import '@fontsource/roboto-mono/400.css';
+import '@fontsource/roboto-mono/500.css';
+import '@fontsource/roboto-mono/600.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -22,7 +21,7 @@ interface Props {
   ogImage?: string;
 }
 
-const { title, description, lang, ogType = 'website', ogImage } = Astro.props;
+const { title, description, lang, ogType = 'website', ogImage = '/og.png' } = Astro.props;
 
 const site = Astro.site!;
 const normalize = (p: string) => (p !== '/' && p.endsWith('/') ? p.slice(0, -1) : p);
@@ -34,6 +33,36 @@ const jaURL = new URL(basePath, site);
 const enURL = new URL(basePath === '/' ? '/en' : `/en${basePath}`, site);
 const ogLocale = lang === 'en' ? 'en_US' : 'ja_JP';
 const ogLocaleAlternate = lang === 'en' ? 'ja_JP' : 'en_US';
+
+// Organization data for Google's knowledge panel / rich results.
+// Address and phone must stay in sync with Footer.astro and the company page.
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Oilkey Corporation',
+  alternateName: 'オイルキー株式会社',
+  url: site.toString(),
+  logo: new URL('/logo.png', site).toString(),
+  foundingDate: '1963-06-26',
+  email: 'oilkey@oilkey.co.jp',
+  telephone: '+81-72-284-1711',
+  faxNumber: '+81-72-298-7790',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '617 Taiheiji, Nishi-ku',
+    addressLocality: 'Sakai',
+    addressRegion: 'Osaka',
+    postalCode: '593-8314',
+    addressCountry: 'JP',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    telephone: '+81-72-284-1711',
+    email: 'oilkey@oilkey.co.jp',
+    availableLanguage: ['Japanese', 'English'],
+  },
+};
 ---
 
 <!doctype html>
@@ -42,8 +71,9 @@ const ogLocaleAlternate = lang === 'en' ? 'ja_JP' : 'en_US';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <title>{title}</title>
 
@@ -60,7 +90,9 @@ const ogLocaleAlternate = lang === 'en' ? 'ja_JP' : 'en_US';
     <meta property="og:locale" content={ogLocale} />
     <meta property="og:locale:alternate" content={ogLocaleAlternate} />
     {ogImage && <meta property="og:image" content={new URL(ogImage, site)} />}
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(orgSchema)} />
   </head>
   <body>
     <Header lang={lang} />
