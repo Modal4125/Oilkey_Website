@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm create *)"
+      "Bash(npm create *)",
+      "mcp__visualize__read_me",
+      "Bash(python3 -c ' *)",
+      "mcp__visualize__show_widget",
+      "Bash(npx astro *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4321/contact)",
+      "Bash(git rm *)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://192.168.0.18:4321/)",
+      "Bash(echo \"reachable via LAN IP: HTTP $\\(curl -s -o /dev/null -w '%{http_code}' http://192.168.0.18:4321/\\)\")"
     ]
   }
 }
