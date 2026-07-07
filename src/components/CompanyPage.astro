@@ -12,6 +12,12 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = company[lang];
+
+// Google Maps place listing for the Sakai office (stable CID link).
+const MAPS_PLACE_URL = 'https://maps.google.com/?cid=16396117781701600710';
+const MAP_EMBED_SRC = `https://maps.google.com/maps?q=${encodeURIComponent(
+  'オイルキー株式会社 大阪府堺市西区太平寺617',
+)}&z=16&hl=${lang}&output=embed`;
 ---
 
 <PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} />
@@ -20,6 +26,25 @@ const t = company[lang];
   <div class="mx-auto max-w-[820px] px-8">
     <SpecPanel tone="light" title={t.overview.title}>
       {t.overview.rows.map((row) => <SpecRow k={row.k} v={row.v} mono={row.mono} />)}
+      <SpecRow k={t.overview.agencies.k}>
+        <div class="space-y-3">
+          {
+            t.overview.agencies.items.map((agency) => (
+              <div>
+                <p>{agency.label}</p>
+                <a
+                  href={agency.url}
+                  target="_blank"
+                  rel="noopener"
+                  class="text-blueprint hover:text-amber font-mono text-[13px] underline underline-offset-2"
+                >
+                  {agency.org}
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </SpecRow>
     </SpecPanel>
   </div>
 </section>
@@ -29,20 +54,69 @@ const t = company[lang];
     <SectionHeading eyebrow={t.message.eyebrow}>{t.message.heading}</SectionHeading>
     <div class="space-y-5 text-[15px]">
       {t.message.paras.map((para) => <p>{para}</p>)}
+      <p class="text-right font-medium">{t.message.signature}</p>
     </div>
   </div>
 </section>
 
 <section class="pb-20">
   <div class="mx-auto max-w-[820px] px-8">
-    <SectionHeading eyebrow={t.access.eyebrow}>{t.access.heading}</SectionHeading>
+    <SectionHeading eyebrow={t.principle.eyebrow}>{t.principle.heading}</SectionHeading>
+    <div class="grid items-center gap-9 sm:grid-cols-[1fr_1.15fr]">
+      <img
+        src="/products-lineup.jpg"
+        alt={t.principle.imageAlt}
+        width="1344"
+        height="1128"
+        loading="lazy"
+        class="w-full mix-blend-multiply dark:rounded-xs dark:bg-white dark:p-3 dark:mix-blend-normal"
+      />
+      <p class="font-display text-blueprint text-xl leading-relaxed font-bold">
+        {t.principle.slogan}
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="pb-20">
+  <div class="mx-auto max-w-[820px] px-8">
+    <SectionHeading eyebrow={t.history.eyebrow}>{t.history.heading}</SectionHeading>
     <ul>
       {
-        t.access.items.map((item) => (
-          <li class="border-line text-steel border-t py-3 text-sm first:border-t-0">{item}</li>
+        t.history.items.map((item) => (
+          <li class="border-line flex gap-6 border-t py-3 text-sm first:border-t-0">
+            <span class="text-steel w-[72px] shrink-0 font-mono">{item.year}</span>
+            <span>{item.text}</span>
+          </li>
         ))
       }
     </ul>
-    {t.access.note && <p class="text-steel-light mt-5 text-[13px] italic">{t.access.note}</p>}
+  </div>
+</section>
+
+<section class="pb-20">
+  <div class="mx-auto max-w-[820px] px-8">
+    <SectionHeading eyebrow={t.access.eyebrow}>{t.access.heading}</SectionHeading>
+    <iframe
+      src={MAP_EMBED_SRC}
+      title={t.access.mapTitle}
+      class="border-line h-[400px] w-full border"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen></iframe>
+    <div class="mt-4 flex flex-wrap items-baseline justify-between gap-3">
+      <p class="text-sm">
+        <span class="font-medium">{t.access.place}</span>
+        <span class="text-steel block">{t.access.address}</span>
+      </p>
+      <a
+        href={MAPS_PLACE_URL}
+        target="_blank"
+        rel="noopener"
+        class="text-blueprint hover:text-amber font-mono text-[13px] underline underline-offset-2"
+      >
+        {t.access.mapsLabel}
+      </a>
+    </div>
   </div>
 </section>

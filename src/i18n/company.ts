@@ -3,9 +3,22 @@ import type { Lang } from './home';
 export interface CompanyCopy {
   meta: { title: string; description: string };
   header: { eyebrow: string; heading: string };
-  overview: { title: string; rows: { k: string; v: string; mono?: boolean }[] };
-  message: { eyebrow: string; heading: string; paras: string[] };
-  access: { eyebrow: string; heading: string; items: string[]; note?: string };
+  overview: {
+    title: string;
+    rows: { k: string; v: string; mono?: boolean }[];
+    agencies: { k: string; items: { label: string; org: string; url: string }[] };
+  };
+  message: { eyebrow: string; heading: string; paras: string[]; signature: string };
+  principle: { eyebrow: string; heading: string; slogan: string; imageAlt: string };
+  history: { eyebrow: string; heading: string; items: { year: string; text: string }[] };
+  access: {
+    eyebrow: string;
+    heading: string;
+    place: string;
+    address: string;
+    mapsLabel: string;
+    mapTitle: string;
+  };
 }
 
 export const company: Record<Lang, CompanyCopy> = {
@@ -19,18 +32,35 @@ export const company: Record<Lang, CompanyCopy> = {
     overview: {
       title: 'Corporate Data / 会社概要',
       rows: [
-        { k: '商号', v: 'オイルキー株式会社（Oilkey Corporation）' },
-        { k: '設立', v: '1963年6月' },
-        { k: '資本金', v: '1,000万円 [要確認]' },
-        { k: '代表者', v: '[代表者名 — 要確認]' },
-        { k: '所在地', v: '〒593-8314 大阪府堺市西区太平寺617' },
+        { k: '会社名', v: 'オイルキー株式会社（Oilkey Corporation）' },
+        { k: '登記上本社', v: '大阪府堺市南区槇塚台4-4-18' },
+        { k: '堺営業所', v: '〒593-8314 大阪府堺市西区太平寺617-2F' },
+        { k: '工場', v: '大阪府堺市西区太平寺602' },
         { k: 'TEL / FAX', v: '072-284-1711 / 072-298-7790', mono: true },
         { k: 'Email', v: 'oilkey@oilkey.co.jp', mono: true },
+        { k: '設立年', v: '1963年6月26日（昭和38年）' },
+        { k: '資本金', v: '1,000万円' },
+        { k: '代表取締役', v: '山田ウィニー' },
         {
           k: '事業内容',
-          v: '特殊潤滑油・潤滑関連製品の輸入販売、オリジナル製品の開発、グリースガンほか関連機器の製造',
+          v: 'グリースガン等潤滑油関連品製造販売、特殊ケミカル製品・潤滑関連製品の輸入販売',
         },
       ],
+      agencies: {
+        k: '代理店',
+        items: [
+          {
+            label: 'ドイツ OKS 社　日本総代理店',
+            org: 'OKS Spezialschmierstoffe GmbH（英語）',
+            url: 'https://www.oks-germany.com/en/',
+          },
+          {
+            label: 'ドイツ BANTLEON 社　日本総代理店',
+            org: 'Hermann Bantleon GmbH（英語）',
+            url: 'https://www.bantleon.de/en/',
+          },
+        ],
+      },
     },
     message: {
       eyebrow: 'MESSAGE',
@@ -41,16 +71,32 @@ export const company: Record<Lang, CompanyCopy> = {
         '工作機械、建設機械、自動車、農業機械、航空機、船舶など、さまざまな産業の現場から寄せられる声を製品開発に直接反映させ、潤滑に関するあらゆるニーズにすばやくお応えできるよう、日々システムの改善に努めております。',
         '社員一同、心を新たに社業に邁進してまいります。今後とも変わらぬご支援を賜りますよう、よろしくお願い申し上げます。',
       ],
+      signature: '代表取締役 山田ウィニー',
+    },
+    principle: {
+      eyebrow: 'PRINCIPLE',
+      heading: '経営理念',
+      slogan: '人にやさしく、環境にやさしい製品の普及を通じて、産業と社会の発展に寄与します。',
+      imageAlt: 'OKS・AVIA をはじめとする取扱製品',
+    },
+    history: {
+      eyebrow: 'HISTORY',
+      heading: '沿革',
+      items: [
+        { year: '1956年', text: '東洋光器製作所として発足。' },
+        {
+          year: '1963年',
+          text: '株式会社に改組と同時に、オイルキー株式会社に社名変更。現在に至る。',
+        },
+      ],
     },
     access: {
       eyebrow: 'ACCESS',
       heading: 'アクセス',
-      items: [
-        '南海本線「湊駅」より徒歩 [ ] 分 — [最寄駅・所要時間 要確認]',
-        '阪堺線 [ ] — [要確認]',
-        'お車の場合：阪神高速堺線 [ ] 出口より約 [ ] 分 — [要確認]',
-      ],
-      note: '※ 現サイトの地図・アクセス情報を移行するか、最新の地図データをご提供ください。',
+      place: 'オイルキー株式会社 堺営業所',
+      address: '〒593-8314 大阪府堺市西区太平寺617-2F',
+      mapsLabel: 'Google マップで開く',
+      mapTitle: 'オイルキー株式会社（堺市西区太平寺）の地図',
     },
   },
 
@@ -64,18 +110,35 @@ export const company: Record<Lang, CompanyCopy> = {
     overview: {
       title: 'Corporate Overview',
       rows: [
-        { k: 'Company name', v: 'Oilkey Corporation' },
-        { k: 'Founded', v: 'June 1963' },
-        { k: 'Capital', v: 'JPY 10,000,000 [confirm]' },
-        { k: 'Representative', v: '[Representative name — confirm]' },
-        { k: 'Address', v: '617 Taiheiji, Nishi-ku, Sakai, Osaka 593-8314, Japan' },
+        { k: 'Company name', v: 'Oilkey Corporation (オイルキー株式会社)' },
+        { k: 'Registered head office', v: '4-4-18 Makizukadai, Minami-ku, Sakai, Osaka, Japan' },
+        { k: 'Sakai office', v: '617-2F Taiheiji, Nishi-ku, Sakai, Osaka 593-8314, Japan' },
+        { k: 'Factory', v: '602 Taiheiji, Nishi-ku, Sakai, Osaka, Japan' },
         { k: 'Tel / Fax', v: '+81-72-284-1711 / +81-72-298-7790', mono: true },
         { k: 'Email', v: 'oilkey@oilkey.co.jp', mono: true },
+        { k: 'Founded', v: 'June 26, 1963' },
+        { k: 'Capital', v: 'JPY 10,000,000' },
+        { k: 'Representative Director', v: 'Winnie Yamada' },
         {
           k: 'Business',
-          v: 'Import and sale of specialty lubricants and related products; development of original products; in-house manufacturing of grease guns and related equipment',
+          v: 'Manufacture and sale of grease guns and other lubrication equipment; import and sale of specialty chemical products and lubrication-related products',
         },
       ],
+      agencies: {
+        k: 'Distributorships',
+        items: [
+          {
+            label: 'Exclusive Japan distributor for OKS (Germany)',
+            org: 'OKS Spezialschmierstoffe GmbH',
+            url: 'https://www.oks-germany.com/en/',
+          },
+          {
+            label: 'Exclusive Japan distributor for BANTLEON (Germany)',
+            org: 'Hermann Bantleon GmbH',
+            url: 'https://www.bantleon.de/en/',
+          },
+        ],
+      },
     },
     message: {
       eyebrow: 'MESSAGE',
@@ -86,11 +149,33 @@ export const company: Record<Lang, CompanyCopy> = {
         'We bring the voice of the field — from machine tools and construction machinery to automotive, agricultural machinery, aircraft, and marine applications — directly into our product development, and continue to refine our systems so we can respond quickly to any lubrication challenge.',
         'We thank you for your continued support as we move forward.',
       ],
+      signature: 'Winnie Yamada, Representative Director',
+    },
+    principle: {
+      eyebrow: 'PRINCIPLE',
+      heading: 'Our philosophy',
+      slogan:
+        'Contributing to the development of industry and society through products that are kind to people and gentle on the environment.',
+      imageAlt: 'Oilkey product lineup, including OKS and AVIA lubricants',
+    },
+    history: {
+      eyebrow: 'HISTORY',
+      heading: 'History',
+      items: [
+        { year: '1956', text: 'Established as Toyo Koki Seisakusho.' },
+        {
+          year: '1963',
+          text: 'Incorporated as a company and renamed Oilkey Corporation, as we remain today.',
+        },
+      ],
     },
     access: {
       eyebrow: 'ACCESS',
       heading: 'Access',
-      items: ['[Directions / nearest station / driving access — confirm]'],
+      place: 'Oilkey Corporation — Sakai Office',
+      address: '617-2F Taiheiji, Nishi-ku, Sakai, Osaka 593-8314, Japan',
+      mapsLabel: 'Open in Google Maps',
+      mapTitle: 'Map showing the location of Oilkey Corporation in Sakai, Osaka',
     },
   },
 };
