@@ -1,26 +1,63 @@
 @import 'tailwindcss';
 
+/* "Trust" look — soft blue-gray page, white cards, serif display headings.
+   Brand colors extracted from the logo: navy #02376B, red #D9002B. */
 @theme {
-  --color-ink: #1b2126;
-  --color-steel: #4a5560;
-  --color-steel-light: #7c868d;
-  --color-paper: #f1f2f0;
+  --color-ink: #0f2440;
+  --color-steel: #5a6b7e;
+  --color-steel-light: #8494a5;
+  /* Soft blue-gray page background; panels/cards are white. */
+  --color-paper: #eef2f6;
   --color-panel: #ffffff;
-  --color-blueprint: #2c5f7c;
-  --color-blueprint-dark: #1f4457;
-  --color-amber: #d9832b;
-  --color-amber-bright: #ec9a3f;
-  --color-line: #d7dad6;
-  --color-line-dark: #3a444c;
+  /* Brand navy — used for links, badges, and small accents. */
+  --color-blueprint: #02376b;
+  --color-blueprint-dark: #022a52;
+  /* Deep band background (stats bar, footer, CTA band). Split from
+     `blueprint` so dark mode can lighten link text without lightening bands. */
+  --color-deep: #02376b;
+  /* Brand red (the circle mark) — CTAs, hovers, kickers. */
+  --color-amber: #d9002b;
+  --color-amber-bright: #e81c40;
+  --color-line: #dfe6ee;
+  --color-line-dark: #c6d2e0;
 
   --font-sans: 'Noto Sans JP', sans-serif;
-  --font-display: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
-  --font-mono: 'IBM Plex Mono', monospace;
+  --font-display: 'Noto Serif JP', 'Noto Sans JP', serif;
+  --font-mono: 'Roboto Mono', monospace;
+
+  /* Trust look rounds corners to 6px; rounded-xs is used site-wide. */
+  --radius-xs: 6px;
+}
+
+/* Dark mode follows the visitor's device preference. Utilities compile to
+   var() references, so overriding the variables re-themes everything. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-ink: #e8eef5;
+    --color-steel: #94a4b4;
+    --color-steel-light: #77879a;
+    --color-paper: #0f151d;
+    --color-panel: #161f28;
+    --color-blueprint: #6b9fd8;
+    --color-blueprint-dark: #8fb8e4;
+    --color-deep: #122b47;
+    --color-amber: #ff3550;
+    --color-amber-bright: #ff5568;
+    --color-line: #26323f;
+    --color-line-dark: #3a4a5a;
+  }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      color-scheme: dark;
+    }
   }
 
   body {
@@ -35,7 +72,7 @@
   h2,
   h3 {
     font-family: var(--font-display);
-    font-weight: 900;
+    font-weight: 700;
     letter-spacing: 0.01em;
   }
 }

@@ -31,21 +31,29 @@ const labels = {
 
 const url = (path: string) => getRelativeLocaleUrl(lang, path);
 
+// English sub-labels under the Japanese nav items, per the Trust template.
+const subs =
+  lang === 'ja'
+    ? ['Company', 'Business', 'Products', 'Catalogue', 'News']
+    : [undefined, undefined, undefined, undefined, undefined];
+
 const navItems = [
-  { label: labels.company, href: url('/company') },
-  { label: labels.business, href: url('/business') },
-  { label: labels.products, href: `${url('/')}#products` },
-  { label: labels.catalogue, href: url('/catalogue') },
-  { label: labels.news, href: url('/news') },
-  { label: labels.contact, href: url('/contact') },
+  { label: labels.company, sub: subs[0], href: url('/company') },
+  { label: labels.business, sub: subs[1], href: url('/business') },
+  { label: labels.products, sub: subs[2], href: `${url('/')}#products` },
+  { label: labels.catalogue, sub: subs[3], href: url('/catalogue') },
+  { label: labels.news, sub: subs[4], href: url('/news') },
 ];
+
+const contactItem = { label: labels.contact, href: url('/contact') };
 
 // Mirror path for the JP/EN toggle: strip any /en prefix, re-localize.
 const basePath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
 const jaHref = getRelativeLocaleUrl('ja', basePath);
 const enHref = getRelativeLocaleUrl('en', basePath);
 
-const toggleBase = 'rounded-xs border px-[9px] py-[3px]';
+// Larger padding below lg keeps the JP/EN switch comfortably tappable.
+const toggleBase = 'rounded-xs border px-2.5 py-1.5 lg:px-[9px] lg:py-[3px]';
 const toggleActive = 'border-ink bg-ink text-paper';
 const toggleIdle = 'border-line-dark text-steel';
 ---
@@ -54,35 +62,43 @@ const toggleIdle = 'border-line-dark text-steel';
   <div class="wrap flex h-[76px] items-center justify-between">
     <a
       href={url('/')}
-      class="font-display flex items-center gap-2.5 text-[22px] font-black tracking-[0.02em]"
+      class="flex items-center dark:rounded-xs dark:bg-white dark:px-2 dark:py-1"
+      aria-label="Oilkey Corporation home"
     >
-      <span
-        class="border-ink bg-ink text-paper flex h-[34px] w-[34px] items-center justify-center rounded-xs border-2"
-      >
-        <span class="font-mono text-[13px] font-semibold">OK</span>
-      </span>
-      <span>
-        OILKEY
-        <small class="text-steel mt-0.5 block font-mono text-[10px] font-normal tracking-[0.08em]">
-          OILKEY CORPORATION EST. 1963
-        </small>
-      </span>
+      <img
+        src="/logo.png"
+        alt="Oilkey Corporation"
+        width="600"
+        height="166"
+        class="h-[38px] w-auto dark:h-[34px]"
+      />
     </a>
 
     <nav class="hidden lg:block">
-      <ul class="flex gap-9">
+      <ul class="flex items-center gap-[26px]">
         {
           navItems.map((item) => (
             <li>
               <a
                 href={item.href}
-                class="after:bg-amber relative py-1 text-sm font-medium after:absolute after:-bottom-0.5 after:left-0 after:h-0.5 after:w-0 after:transition-[width] after:duration-200 after:content-[''] hover:after:w-full"
+                class="text-steel hover:text-amber block text-sm font-medium transition-colors"
               >
                 {item.label}
+                {item.sub && (
+                  <span class="block text-[11px] font-normal opacity-60">{item.sub}</span>
+                )}
               </a>
             </li>
           ))
         }
+        <li>
+          <a
+            href={contactItem.href}
+            class="bg-amber hover:bg-amber-bright rounded-xs px-[18px] py-[9px] text-[13px] font-bold text-white transition-colors"
+          >
+            {contactItem.label}
+          </a>
+        </li>
       </ul>
     </nav>
 
@@ -95,9 +111,10 @@ const toggleIdle = 'border-line-dark text-steel';
       <button
         id="menu-btn"
         type="button"
-        class="text-2xl lg:hidden"
+        class="-mr-2.5 flex h-11 w-11 items-center justify-center text-2xl lg:hidden"
         aria-expanded="false"
         aria-controls="mobile-nav"
+        aria-label="Menu"
       >
         ≡
       </button>
@@ -107,9 +124,9 @@ const toggleIdle = 'border-line-dark text-steel';
   <div id="mobile-nav" hidden class="border-line border-t lg:hidden">
     <ul class="wrap flex flex-col py-4">
       {
-        navItems.map((item) => (
+        [...navItems, contactItem].map((item) => (
           <li>
-            <a href={item.href} class="block py-2 text-sm font-medium">
+            <a href={item.href} class="block py-3 text-sm font-medium">
               {item.label}
             </a>
           </li>

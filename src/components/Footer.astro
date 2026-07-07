@@ -69,31 +69,37 @@ const t = {
 }[lang];
 ---
 
-<footer class="bg-ink pt-16 pb-8 text-[13px] text-[#9aa3a8]">
+<footer class="bg-deep pt-16 pb-8 text-[13px] text-white/70">
   <div class="wrap">
     <div
-      class="grid grid-cols-2 gap-10 border-b border-white/[0.12] pb-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]"
+      class="grid grid-cols-2 gap-10 border-b border-white/[0.14] pb-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]"
     >
       <div>
-        <h4 class="mb-[18px] font-mono text-[11px] tracking-[0.1em] text-white uppercase">
-          Oilkey Corporation
-        </h4>
-        <p class="mb-2.5">
+        <span class="mb-[18px] inline-block rounded-xs bg-white px-3.5 py-2.5">
+          <img
+            src="/logo.png"
+            alt="Oilkey Corporation"
+            width="600"
+            height="166"
+            class="h-[30px] w-auto"
+          />
+        </span>
+        <p class="mb-2.5 leading-[1.9]">
           {t.addressLines.map((line, i) => (i > 0 ? [<br />, line] : line))}
         </p>
         <p class="mb-2.5 font-mono">
           TEL 072-284-1711<br />FAX 072-298-7790
         </p>
-        <a href="mailto:oilkey@oilkey.co.jp" class="hover:text-amber block">oilkey@oilkey.co.jp</a>
+        <a href="mailto:oilkey@oilkey.co.jp" class="block hover:text-white">oilkey@oilkey.co.jp</a>
       </div>
       {
         t.cols.map((col) => (
           <div>
-            <h4 class="mb-[18px] font-mono text-[11px] tracking-[0.1em] text-white uppercase">
+            <h4 class="text-amber-bright mb-4 text-xs font-bold tracking-[0.14em] uppercase">
               {col.heading}
             </h4>
             {col.links.map((link) => (
-              <a href={link.href} class="hover:text-amber mb-2.5 block">
+              <a href={link.href} class="mb-1 block py-1 text-white/80 hover:text-white">
                 {link.label}
               </a>
             ))}
@@ -101,7 +107,7 @@ const t = {
         ))
       }
     </div>
-    <div class="flex flex-wrap justify-between gap-2 pt-7 font-mono text-[11px] text-[#6b747a]">
+    <div class="flex flex-wrap justify-between gap-2 pt-7 text-[12px] text-white/50">
       <span>© 1963–2026 OILKEY CORPORATION</span>
       <span
         >OKS / BANTLEON / F@ctory Express are registered trademarks of their respective owners</span

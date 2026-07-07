@@ -12,12 +12,15 @@ const { icon, title, body, href, linkLabel } = Astro.props;
 
 <a
   href={href}
-  class="border-line bg-panel hover:border-blueprint block border px-[22px] py-[26px] transition-[border-color,transform] duration-150 hover:-translate-y-[3px]"
+  class="group border-line bg-panel relative block overflow-hidden rounded-xs border px-[22px] py-[26px] transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-1 hover:shadow-[0_14px_30px_-18px_rgba(2,55,107,0.5)]"
 >
+  <span
+    class="bg-amber absolute top-0 bottom-0 left-0 w-1 origin-top scale-y-0 transition-transform duration-200 group-hover:scale-y-100"
+    aria-hidden="true"></span>
   <div class="border-ink mb-5 flex h-11 w-11 items-center justify-center rounded-xs border-[1.5px]">
     {icon}
   </div>
   <h3 class="mb-2 text-base">{title}</h3>
   <p class="text-steel mb-4 text-[13px]">{body}</p>
-  <span class="text-blueprint font-mono text-xs font-medium">{linkLabel}</span>
+  <span class="text-amber font-mono text-xs font-medium">{linkLabel}</span>
 </a>

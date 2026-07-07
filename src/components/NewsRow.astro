@@ -11,13 +11,16 @@ interface Props {
 const { date, tag, title, href } = Astro.props;
 ---
 
-<a href={href} class="group border-line flex gap-7 border-t py-[22px] first:border-t-0">
-  <div class="text-steel-light w-[100px] shrink-0 pt-0.5 font-mono text-xs">
+<a
+  href={href}
+  class="group border-line flex flex-col gap-1.5 border-t py-[22px] first:border-t-0 sm:flex-row sm:gap-7"
+>
+  <div class="text-amber shrink-0 pt-0.5 font-mono text-xs font-medium sm:w-[100px]">
     {formatNewsDate(date)}
   </div>
   <div>
     <span
-      class="border-blueprint text-blueprint mr-3 rounded-xs border px-2 py-0.5 font-mono text-[10px]"
+      class="border-line text-steel mr-3 rounded-full border px-2.5 py-0.5 font-mono text-[10px]"
     >
       {tag}
     </span>

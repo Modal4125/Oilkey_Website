@@ -1,21 +1,18 @@
 ---
-import Crosshair from './Crosshair.astro';
-
 interface Props {
   tone?: 'blueprint' | 'amber';
   class?: string;
 }
 
-const { tone = 'blueprint', class: className } = Astro.props;
+const { tone = 'amber', class: className } = Astro.props;
 ---
 
 <div
   class:list={[
-    'flex items-center gap-2 font-mono text-xs tracking-[0.14em] uppercase',
-    tone === 'amber' ? 'text-amber' : 'text-blueprint',
+    'text-xs font-bold tracking-[0.16em] uppercase',
+    tone === 'blueprint' ? 'text-blueprint' : 'text-amber',
     className,
   ]}
 >
-  <Crosshair size="sm" class="text-amber" />
   <slot />
 </div>
