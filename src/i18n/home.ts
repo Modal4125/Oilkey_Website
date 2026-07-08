@@ -96,26 +96,26 @@ export const home: Record<Lang, HomeCopy> = {
     products: {
       eyebrow: 'PRODUCTS',
       heading: '取扱製品',
-      intro: '特殊潤滑油からドライ潤滑剤、防錆剤まで。詳細な製品カタログは近日公開予定です。',
-      linkLabel: 'カタログを見る →',
+      intro: '特殊潤滑油からドライ潤滑剤、防錆剤まで。詳細は取扱製品ページをご覧ください。',
+      linkLabel: '詳しく見る →',
       items: [
         {
-          icon: '🛢',
+          icon: 'drop',
           title: '特殊潤滑油 OKS',
           body: 'ドイツ OKS 社の特殊潤滑油。高温・高荷重・特殊環境に対応。',
         },
         {
-          icon: '🔧',
+          icon: 'grease-gun',
           title: 'グリースガン',
           body: '自社製造の F@ctory Express グリースガンシリーズ。',
         },
         {
-          icon: '◈',
+          icon: 'layers',
           title: 'ドライ潤滑剤',
           body: 'フッ素樹脂（PTFE）・ベントン系のドライ潤滑コーティング。',
         },
         {
-          icon: '⛨',
+          icon: 'shield',
           title: '防錆剤',
           body: '金属部品の防錆・防食に対応する各種コーティング剤。',
         },
@@ -213,26 +213,26 @@ export const home: Record<Lang, HomeCopy> = {
       eyebrow: 'PRODUCTS',
       heading: 'Products',
       intro:
-        'From specialty lubricants to dry film coatings and corrosion protection. Detailed product catalogues coming soon.',
-      linkLabel: 'View catalogue →',
+        'From specialty lubricants to dry film coatings and corrosion protection. See the products page for the full range.',
+      linkLabel: 'Learn more →',
       items: [
         {
-          icon: '🛢',
+          icon: 'drop',
           title: 'OKS Specialty Lubricants',
           body: 'Specialty lubricants from OKS Germany, engineered for high temperature, high load, and demanding environments.',
         },
         {
-          icon: '🔧',
+          icon: 'grease-gun',
           title: 'Grease Guns',
           body: 'Our own F@ctory Express grease gun series, made in-house.',
         },
         {
-          icon: '◈',
+          icon: 'layers',
           title: 'Dry Lubricants',
           body: 'PTFE and bentone-based dry film lubricant coatings.',
         },
         {
-          icon: '⛨',
+          icon: 'shield',
           title: 'Corrosion Inhibitors',
           body: 'Coatings that protect metal parts from rust and corrosion.',
         },

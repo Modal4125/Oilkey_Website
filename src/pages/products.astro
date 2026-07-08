@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductsPage from '../components/ProductsPage.astro';
+import { products } from '../i18n/products';
+
+const t = products.ja;
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang="ja">
+  <ProductsPage lang="ja" />
+</Layout>

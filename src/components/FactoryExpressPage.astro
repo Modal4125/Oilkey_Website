@@ -1,0 +1,118 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import PageHeader from './PageHeader.astro';
+import Button from './Button.astro';
+import { factoryExpress as copy } from '../i18n/factory-express';
+import { factoryExpress as catalogueJa } from '../data/factory-express';
+import { factoryExpressEn as catalogueEn } from '../data/factory-express-en';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = copy[lang];
+const catalogue = lang === 'ja' ? catalogueJa : catalogueEn;
+const contactUrl = getRelativeLocaleUrl(lang, '/contact');
+const downloadsUrl = getRelativeLocaleUrl(lang, '/catalogue');
+---
+
+<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
+
+<div class="wrap pt-10">
+  {
+    t.jaNotice && (
+      <p class="border-line bg-panel text-steel mb-8 rounded-xs border px-5 py-4 text-sm">
+        {t.jaNotice}
+      </p>
+    )
+  }
+  <nav aria-label="Categories" class="flex flex-wrap gap-2">
+    {
+      catalogue.map((cat) => (
+        <a
+          href={`#${cat.id}`}
+          class="border-line bg-panel hover:border-amber hover:text-amber rounded-xs border px-4 py-2 text-[13px] font-medium transition-colors"
+        >
+          {cat.title}
+        </a>
+      ))
+    }
+  </nav>
+</div>
+
+{
+  catalogue.map((cat, i) => (
+    <section id={cat.id} class="scroll-mt-24 py-10 lg:py-14">
+      <div class="wrap">
+        <div class="text-amber mb-3 flex items-baseline gap-3 font-mono text-xs font-semibold">
+          <span>{String(i + 1).padStart(2, '0')}</span>
+          <span>{cat.tag}</span>
+        </div>
+        <h2 class="mb-5 text-[22px] font-bold">
+          {cat.title}
+          <span class="text-steel ml-3 font-mono text-xs font-normal">
+            {cat.rows.length}
+            {t.countSuffix}
+          </span>
+        </h2>
+        <div class="border-line overflow-x-auto rounded-xs border">
+          <table class="w-full min-w-[1080px] border-collapse text-[13px]">
+            <thead>
+              <tr>
+                {cat.columns.map((col) => (
+                  <th class="bg-panel border-line border-b px-3.5 py-3 text-left align-bottom text-xs font-semibold whitespace-pre-line">
+                    {col}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {cat.rows.map((row) => (
+                <tr class="even:bg-panel">
+                  {row.map((cell, j) => (
+                    <td
+                      class:list={[
+                        'border-line border-t px-3.5 py-3 align-top whitespace-pre-line',
+                        j === 0 && 'text-ink min-w-[190px] font-medium',
+                        j === 1 && 'text-steel min-w-[260px]',
+                        j > 1 && 'text-steel min-w-[104px]',
+                      ]}
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {cat.notes.length > 0 && (
+          <div class="mt-4">
+            <div class="text-steel mb-1.5 font-mono text-[11px] font-semibold tracking-[0.1em] uppercase">
+              {t.notesLabel}
+            </div>
+            <ul class="text-steel space-y-1 text-xs">
+              {cat.notes.map((note) => (
+                <li>{note}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </section>
+  ))
+}
+
+<section class="pb-16 lg:pb-20">
+  <div class="wrap">
+    <div class="border-line bg-panel rounded-xs border px-[30px] py-10 text-center">
+      <p class="text-steel text-sm">{t.note}</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3.5">
+        <Button href={contactUrl} variant="primary">{t.contactCta}</Button>
+        <Button href={downloadsUrl} variant="outline">{t.downloadsCta}</Button>
+      </div>
+    </div>
+  </div>
+</section>

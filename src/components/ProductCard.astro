@@ -8,6 +8,18 @@ interface Props {
 }
 
 const { icon, title, body, href, linkLabel } = Astro.props;
+
+// Line icons keyed by name (see i18n/home.ts items). Stroke follows
+// currentColor so they adapt to light/dark automatically.
+const svgAttrs =
+  'xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="100%" height="100%"';
+
+const icons: Record<string, string> = {
+  drop: `<svg ${svgAttrs}><path d="M12 3.5c3.5 4.4 6 7.7 6 10.6a6 6 0 0 1-12 0c0-2.9 2.5-6.2 6-10.6Z"/></svg>`,
+  'grease-gun': `<svg ${svgAttrs}><rect x="4" y="9.5" width="10.5" height="4.5" rx="1"/><path d="M6.5 9.5V7M4.5 7h4M14.5 11.5h3c1.6 0 2.4-.9 3-2.3M8 14l-1.4 5h3.2L11 14"/></svg>`,
+  layers: `<svg ${svgAttrs}><path d="m12 4.5 8 4.5-8 4.5-8-4.5Z"/><path d="m4 14 8 4.5 8-4.5"/></svg>`,
+  shield: `<svg ${svgAttrs}><path d="M12 3.5 18.5 5.9v5.3c0 4.5-2.8 7.3-6.5 9.3-3.7-2-6.5-4.8-6.5-9.3V5.9Z"/><path d="m9.3 11.7 1.9 1.9 3.5-3.7"/></svg>`,
+};
 ---
 
 <a
@@ -17,8 +29,10 @@ const { icon, title, body, href, linkLabel } = Astro.props;
   <span
     class="bg-amber absolute top-0 bottom-0 left-0 w-1 origin-top scale-y-0 transition-transform duration-200 group-hover:scale-y-100"
     aria-hidden="true"></span>
-  <div class="border-ink mb-5 flex h-11 w-11 items-center justify-center rounded-xs border-[1.5px]">
-    {icon}
+  <div
+    class="border-line-dark text-blueprint mb-5 flex h-11 w-11 items-center justify-center rounded-xs border-[1.5px]"
+  >
+    <span class="flex h-[22px] w-[22px]" aria-hidden="true" set:html={icons[icon] ?? ''} />
   </div>
   <h3 class="mb-2 text-base">{title}</h3>
   <p class="text-steel mb-4 text-[13px]">{body}</p>

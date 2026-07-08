@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FactoryExpressPage from '../../components/FactoryExpressPage.astro';
+import { factoryExpress } from '../../i18n/factory-express';
+
+const t = factoryExpress.ja;
+---
+
+<Layout title={t.meta.title} description={t.meta.description} lang="ja">
+  <FactoryExpressPage lang="ja" />
+</Layout>

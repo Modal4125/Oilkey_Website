@@ -1,0 +1,60 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import PageHeader from './PageHeader.astro';
+import Button from './Button.astro';
+import { products } from '../i18n/products';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = products[lang];
+const feCatalogueUrl = getRelativeLocaleUrl(lang, '/products/factory-express');
+const contactUrl = getRelativeLocaleUrl(lang, '/contact');
+---
+
+<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
+
+<section class="py-16 lg:py-20">
+  <div class="wrap">
+    <div class="grid gap-6 lg:grid-cols-2">
+      {
+        t.categories.map((cat, i) => (
+          <div class="border-line bg-panel border-t-amber rounded-xs border border-t-[3px] px-[30px] py-9">
+            <div class="text-amber mb-4 flex items-baseline gap-3 font-mono text-xs font-semibold">
+              <span>{String(i + 1).padStart(2, '0')}</span>
+              <span>{cat.tag}</span>
+            </div>
+            <h2 class="mb-3 text-[19px] font-bold">{cat.title}</h2>
+            <p class="text-steel text-sm">{cat.body}</p>
+            {cat.standards && (
+              <div class="mt-5 flex flex-wrap gap-2">
+                {cat.standards.map((standard) => (
+                  <span class="border-line text-steel bg-paper rounded-xs border px-2.5 py-1 font-mono text-[11px]">
+                    {standard}
+                  </span>
+                ))}
+              </div>
+            )}
+            <a
+              href={`${feCatalogueUrl}#${cat.catalogueId}`}
+              class="text-amber mt-5 inline-block font-mono text-xs font-medium"
+            >
+              {t.catalogueLink}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="border-line bg-panel mt-10 rounded-xs border px-[30px] py-10 text-center">
+      <p class="text-steel text-sm">{t.note}</p>
+      <div class="mt-6 flex flex-wrap justify-center gap-3.5">
+        <Button href={feCatalogueUrl} variant="primary">{t.catalogueCta}</Button>
+        <Button href={contactUrl} variant="outline">{t.contactCta}</Button>
+      </div>
+    </div>
+  </div>
+</section>
