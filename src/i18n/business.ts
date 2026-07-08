@@ -11,6 +11,8 @@ export interface BusinessPillar {
 export interface BusinessCopy {
   meta: { title: string; description: string };
   header: { eyebrow: string; heading: string; intro: string };
+  /** Opening statement carried over from the previous site's business page */
+  overview: { lead: string; body: string };
   pillars: BusinessPillar[];
 }
 
@@ -26,6 +28,10 @@ export const business: Record<Lang, BusinessCopy> = {
       heading: '事業案内',
       intro:
         'オイルキーは「開発」「輸入」「製造」の3つの事業を自社で完結させることで、潤滑に関するあらゆるニーズにスピーディーにお応えしています。',
+    },
+    overview: {
+      lead: '潤滑油関連機器の製造販売と、環境対応自動車エンジンオイルや船舶用オイル、各種工業用潤滑油など、さまざまな潤滑油製品を販売しています。',
+      body: '生産機械、建設機械、輸送機器、電子機器など、可動部を持つあらゆる機器は、摩擦によるトラブルに対抗するため潤滑剤を必要としています。オイルキーは、潤滑油関連機器の製造メーカーであると同時に、潤滑剤開発の豊富な経験を活かし、ユーザーの視点に立って世界的に優れた製品をチョイス。幅広いニーズにお応えできる特殊潤滑剤を安定的におとどけしています。',
     },
     pillars: [
       {
@@ -77,6 +83,10 @@ export const business: Record<Lang, BusinessCopy> = {
       heading: 'Business',
       intro:
         'Oilkey brings development, import, and manufacturing together under one roof, so we can respond quickly to any lubrication need.',
+    },
+    overview: {
+      lead: 'We manufacture and sell lubrication equipment, and supply a wide range of lubricant products — from environmentally compatible automotive engine oils and marine oils to industrial lubricants of every kind.',
+      body: 'Every machine with moving parts — production machinery, construction machinery, transport equipment, electronics — needs lubricants to fight friction-related trouble. Oilkey is a manufacturer of lubrication equipment, and at the same time draws on deep experience in lubricant development to select the world’s finest products from the user’s point of view. The result is a stable supply of specialty lubricants that meet the widest range of needs.',
     },
     pillars: [
       {

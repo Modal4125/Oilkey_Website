@@ -13,8 +13,16 @@ const t = business[lang];
 
 <PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
 
-<section class="py-20">
+<section class="py-16 lg:py-20">
   <div class="wrap">
+    <div class="mb-14 lg:mb-16">
+      <p class="max-w-[860px] text-[clamp(17px,2vw,22px)] leading-[1.8] font-bold">
+        {t.overview.lead}
+      </p>
+      <p class="text-steel mt-6 max-w-[820px] text-[15px] leading-[2]">
+        {t.overview.body}
+      </p>
+    </div>
     <div class="grid gap-6 lg:grid-cols-3">
       {
         t.pillars.map((pillar) => (
