@@ -5,6 +5,8 @@ export interface FactoryExpressCopy {
   header: { eyebrow: string; heading: string; intro: string };
   /** Shown on the EN page: translation disclaimer (Japanese edition is authoritative) */
   jaNotice?: string;
+  /** Labels for the PDF / Excel download buttons */
+  downloads: { pdf: string; xlsx: string };
   /** Suffix after the product count, e.g. "35 製品" */
   countSuffix: string;
   notesLabel: string;
@@ -26,6 +28,7 @@ export const factoryExpress: Record<Lang, FactoryExpressCopy> = {
       intro:
         'OKS特殊潤滑剤と自社製グリースガン関連製品のWebカタログです。Eプライスはご注文数量が1個の場合の価格（円）です。10個単位のご注文には割引価格が適用されます。',
     },
+    downloads: { pdf: 'PDF版をダウンロード ↓', xlsx: 'Excel版をダウンロード ↓' },
     countSuffix: '製品',
     notesLabel: '注記',
     note: '価格・納期・在庫については、お気軽にお問い合わせください。FAX注文書・見積依頼書はカタログ・資料ダウンロードのページにございます。',
@@ -47,6 +50,7 @@ export const factoryExpress: Record<Lang, FactoryExpressCopy> = {
     },
     jaNotice:
       'Translated from the Japanese catalogue for reference — the Japanese edition is authoritative. All prices are in Japanese yen. For assistance in English, please contact us.',
+    downloads: { pdf: 'Download PDF ↓', xlsx: 'Download Excel ↓' },
     countSuffix: ' products',
     notesLabel: 'Notes',
     note: 'For pricing, lead times, and stock, please get in touch — fax order and quote forms are available on the downloads page.',

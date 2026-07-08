@@ -16,6 +16,8 @@ const t = copy[lang];
 const catalogue = lang === 'ja' ? catalogueJa : catalogueEn;
 const contactUrl = getRelativeLocaleUrl(lang, '/contact');
 const downloadsUrl = getRelativeLocaleUrl(lang, '/catalogue');
+const pdfUrl = `/downloads/factory-express-catalogue-${lang}.pdf`;
+const xlsxUrl = `/downloads/factory-express-catalogue-${lang}.xlsx`;
 ---
 
 <PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
@@ -40,12 +42,20 @@ const downloadsUrl = getRelativeLocaleUrl(lang, '/catalogue');
       ))
     }
   </nav>
+  <div class="mt-6 flex flex-wrap gap-3">
+    <a href={pdfUrl} download class="text-amber font-mono text-xs font-medium">
+      {t.downloads.pdf}
+    </a>
+    <a href={xlsxUrl} download class="text-amber font-mono text-xs font-medium">
+      {t.downloads.xlsx}
+    </a>
+  </div>
 </div>
 
 {
   catalogue.map((cat, i) => (
     <section id={cat.id} class="scroll-mt-24 py-10 lg:py-14">
-      <div class="wrap">
+      <div class="mx-auto w-full max-w-[1600px] px-8">
         <div class="text-amber mb-3 flex items-baseline gap-3 font-mono text-xs font-semibold">
           <span>{String(i + 1).padStart(2, '0')}</span>
           <span>{cat.tag}</span>
