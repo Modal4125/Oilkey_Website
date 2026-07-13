@@ -12,7 +12,7 @@ export const catalogue: Record<Lang, CatalogueCopy> = {
     meta: {
       title: 'カタログ・資料ダウンロード | オイルキー株式会社',
       description:
-        'OKS特殊潤滑油の総合カタログ、グリースガン製品カタログ、注文書などの PDF 資料をダウンロードいただけます。',
+        'OKS特殊潤滑油の総合カタログ、AVIA油圧作動油、F@ctory Expressグリースガン製品カタログ、OILKEY 8000などオリジナル製品・廃番製品の製品資料、注文書のPDF資料をダウンロードいただけます。',
     },
     header: {
       eyebrow: 'CATALOGUE & DOWNLOADS',
@@ -27,7 +27,7 @@ export const catalogue: Record<Lang, CatalogueCopy> = {
     meta: {
       title: 'Catalogue & Downloads | Oilkey Corporation',
       description:
-        'Download PDF resources from Oilkey Corporation — OKS specialty lubricant catalogues, grease gun product catalogues, and order forms.',
+        'Download PDF resources from Oilkey Corporation — OKS specialty lubricant catalogues, AVIA hydraulic fluid, F@ctory Express grease gun catalogues, product sheets for Oilkey originals and discontinued products, and order forms.',
     },
     header: {
       eyebrow: 'CATALOGUE & DOWNLOADS',

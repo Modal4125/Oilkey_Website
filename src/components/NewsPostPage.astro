@@ -15,7 +15,25 @@ const { lang, post } = Astro.props;
 const t = news[lang];
 const { Content } = await render(post);
 const listUrl = getRelativeLocaleUrl(lang, '/news');
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: post.data.title,
+  datePublished: post.data.date.toISOString().slice(0, 10),
+  inLanguage: lang,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+  image: new URL('/og.png', Astro.site).toString(),
+  author: { '@type': 'Organization', name: 'Oilkey Corporation' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Oilkey Corporation',
+    logo: { '@type': 'ImageObject', url: new URL('/logo.png', Astro.site).toString() },
+  },
+};
 ---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(articleSchema)} />
 
 <div class="border-line bg-panel border-b">
   <div class="mx-auto max-w-[820px] px-8 py-[72px]">
