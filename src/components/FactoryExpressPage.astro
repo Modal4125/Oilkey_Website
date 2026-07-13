@@ -5,6 +5,7 @@ import Button from './Button.astro';
 import { factoryExpress as copy } from '../i18n/factory-express';
 import { factoryExpress as catalogueJa } from '../data/factory-express';
 import { factoryExpressEn as catalogueEn } from '../data/factory-express-en';
+import { oksDesignation, oksUrl } from '../data/oks-links';
 import type { Lang } from '../i18n/home';
 
 interface Props {
@@ -18,7 +19,50 @@ const contactUrl = getRelativeLocaleUrl(lang, '/contact');
 const downloadsUrl = getRelativeLocaleUrl(lang, '/catalogue');
 const pdfUrl = `/downloads/factory-express-catalogue-${lang}.pdf`;
 const xlsxUrl = `/downloads/factory-express-catalogue-${lang}.xlsx`;
+
+// schema.org Product markup for every catalogue row, so search engines can
+// index the product range. Deliberately no Offer/price data: the E-prices
+// are carried from the legacy site and unconfirmed — add offers once
+// pricing is verified.
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+// ja headers: 製 品 名 / 商 品 名 (spaced); en headers: exactly "Product"
+// (anchored so "Item no." in the related-products table can't match).
+const NAME_COL = /製\s*品\s*名|商\s*品\s*名|^product$/i;
+const FEATURE_COL = /特\s*長|features/i;
+const clean = (s: string) => s.replace(/\*\d+/g, '').replace(/\n/g, ' ').trim();
+
+const products = catalogue.flatMap((cat) => {
+  const nameIdx = cat.columns.findIndex((c) => NAME_COL.test(c));
+  const featIdx = cat.columns.findIndex((c) => FEATURE_COL.test(c));
+  if (nameIdx === -1) return [];
+  return cat.rows
+    .filter((row) => clean(row[nameIdx]) && clean(row[nameIdx]) !== '－')
+    .map((row) => ({
+      '@type': 'Product',
+      name: clean(row[nameIdx]),
+      ...(featIdx !== -1 && clean(row[featIdx]) ? { description: clean(row[featIdx]) } : {}),
+      brand: {
+        '@type': 'Brand',
+        name: /^OKS/.test(row[nameIdx]) ? 'OKS' : 'F@ctory Express',
+      },
+      url: oksUrl(row[nameIdx]) ?? `${pageUrl}#${cat.id}`,
+    }));
+});
+
+const productListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: t.header.heading,
+  numberOfItems: products.length,
+  itemListElement: products.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item,
+  })),
+};
 ---
+
+<script type="application/ld+json" is:inline set:html={JSON.stringify(productListSchema)} />
 
 <PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
 
@@ -50,6 +94,7 @@ const xlsxUrl = `/downloads/factory-express-catalogue-${lang}.xlsx`;
       {t.downloads.xlsx}
     </a>
   </div>
+  <p class="text-steel-light mt-3 text-xs">{t.oksLinkNote}</p>
 </div>
 
 {
@@ -81,18 +126,37 @@ const xlsxUrl = `/downloads/factory-express-catalogue-${lang}.xlsx`;
             <tbody>
               {cat.rows.map((row) => (
                 <tr class="even:bg-panel">
-                  {row.map((cell, j) => (
-                    <td
-                      class:list={[
-                        'border-line border-t px-3.5 py-3 align-top whitespace-pre-line',
-                        j === 0 && 'text-ink min-w-[190px] font-medium',
-                        j === 1 && 'text-steel min-w-[260px]',
-                        j > 1 && 'text-steel min-w-[104px]',
-                      ]}
-                    >
-                      {cell}
-                    </td>
-                  ))}
+                  {row.map((cell, j) => {
+                    const link = j === 0 ? oksUrl(cell) : undefined;
+                    const name = link ? oksDesignation(cell)! : '';
+                    const rest = link ? cell.slice(name.length) : '';
+                    return (
+                      <td
+                        class:list={[
+                          'border-line border-t px-3.5 py-3 align-top whitespace-pre-line',
+                          j === 0 && 'text-ink min-w-[190px] font-medium',
+                          j === 1 && 'text-steel min-w-[260px]',
+                          j > 1 && 'text-steel min-w-[104px]',
+                        ]}
+                      >
+                        {link ? (
+                          <>
+                            <a
+                              href={link}
+                              target="_blank"
+                              rel="noopener"
+                              class="text-blueprint hover:text-amber underline decoration-dotted underline-offset-2 transition-colors"
+                            >
+                              {name}
+                            </a>
+                            {rest}
+                          </>
+                        ) : (
+                          cell
+                        )}
+                      </td>
+                    );
+                  })}
                 </tr>
               ))}
             </tbody>
