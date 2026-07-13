@@ -38,22 +38,12 @@ const contactUrl = getRelativeLocaleUrl(lang, '/contact');
                 ))}
               </div>
             )}
-            {cat.catalogueId && (
-              <a
-                href={`${feCatalogueUrl}#${cat.catalogueId}`}
-                class="text-amber mt-5 inline-block font-mono text-xs font-medium"
-              >
-                {t.catalogueLink}
-              </a>
-            )}
-            {cat.doc && (
-              <a
-                href={cat.doc.href}
-                class="text-amber mt-5 inline-block font-mono text-xs font-medium"
-              >
-                {cat.doc.label}
-              </a>
-            )}
+            <a
+              href={`${feCatalogueUrl}#${cat.catalogueId}`}
+              class="text-amber mt-5 inline-block font-mono text-xs font-medium"
+            >
+              {t.catalogueLink}
+            </a>
           </div>
         ))
       }

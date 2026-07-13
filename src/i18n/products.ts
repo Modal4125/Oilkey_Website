@@ -8,9 +8,7 @@ export interface ProductCategory {
   /** Standards / certifications mentioned for the category, shown as chips */
   standards?: string[];
   /** Section anchor on the F@ctory Express catalogue page (see data/factory-express.ts) */
-  catalogueId?: string;
-  /** Direct document link for cards not covered by the F@ctory Express catalogue */
-  doc?: { href: string; label: string };
+  catalogueId: string;
 }
 
 export interface ProductsCopy {
@@ -71,13 +69,6 @@ export const products: Record<Lang, ProductsCopy> = {
         catalogueId: 'oil',
         body: '基油（ベースオイル）に各種添加剤を配合した高機能潤滑油です。基油の種類により、鉱油系・合成油系に分けられます。食品機械用（NSFカテゴリーH1正規登録済）も取りそろえています。',
         standards: ['NSF H1'],
-      },
-      {
-        tag: 'HYDRAULIC FLUID',
-        title: '油圧作動油 AVIA SYNTOFLUID PE-B',
-        body: 'ドイツ BANTLEON 社のポリオレフィン（PAO）系高性能油圧作動油。オイル交換間隔を延長でき、生分解性（21日間で80%以上・CEC-L-33-A-93）のため、生分解性作動油の使用が義務付けられた地域にも適合します。−40℃までの冷間始動に対応し、鉱油との混和も可能。シールやホースを傷めず、温度に左右されにくい粘度が特長です。鉄骨構造物・水利設備の固定機器から、スノーグルーマー・工作機械・射出成形機・土木・林業機械まで幅広く対応します。',
-        standards: ['生分解性（CEC-L-33-A-93）', 'PAO合成油', '−40℃冷間始動'],
-        doc: { href: '/downloads/avia-syntofluid-pe-b.pdf', label: 'パンフレット（PDF）→' },
       },
       {
         tag: 'CORROSION PROTECTION',
@@ -145,13 +136,6 @@ export const products: Record<Lang, ProductsCopy> = {
         catalogueId: 'oil',
         body: 'High-performance lubricating oils blending base oil with additive packages, available in mineral and synthetic types. Food-machinery grades (NSF category H1 registered) are also available.',
         standards: ['NSF H1'],
-      },
-      {
-        tag: 'HYDRAULIC FLUID',
-        title: 'AVIA SYNTOFLUID PE-B Hydraulic Fluid',
-        body: 'A high-performance PAO-based hydraulic fluid from BANTLEON that extends oil-change intervals. Biodegradable (over 80% in 21 days per CEC-L-33-A-93), it qualifies where biodegradable hydraulic fluids are mandated. It cold-starts down to −40°C, mixes with mineral oil, is gentle on seals and hoses, and holds a stable viscosity across temperatures — for everything from fixed equipment in steel structures and water engineering to snow groomers, machine tools, injection molding machines, and construction and forestry machinery.',
-        standards: ['Biodegradable (CEC-L-33-A-93)', 'PAO synthetic', 'Cold start to −40°C'],
-        doc: { href: '/downloads/avia-syntofluid-pe-b.pdf', label: 'Pamphlet (PDF) →' },
       },
       {
         tag: 'CORROSION PROTECTION',
