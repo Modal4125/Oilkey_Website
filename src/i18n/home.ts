@@ -132,7 +132,7 @@ export const home: Record<Lang, HomeCopy> = {
       intro: '製品カタログ・注文書などの PDF 資料をこちらからダウンロードいただけます。',
       download: 'ダウンロード ↓',
       rows: [
-        { badge: 'PDF', title: 'OKS 特殊潤滑油 総合カタログ', meta: 'General Catalogue — 4.2MB' },
+        { badge: 'WEB', title: 'OKS 特殊潤滑油 総合カタログ', meta: 'OKS社 製品ページ' },
         {
           badge: 'PDF',
           title: 'グリースガン製品カタログ（F@ctory Express）',
@@ -256,7 +256,7 @@ export const home: Record<Lang, HomeCopy> = {
       intro: 'Product catalogues, order forms, and other PDF resources are available for download.',
       download: 'Download ↓',
       rows: [
-        { badge: 'PDF', title: 'OKS Specialty Lubricants', meta: 'General Catalogue — 4.2MB' },
+        { badge: 'WEB', title: 'OKS Specialty Lubricants', meta: 'Manufacturer product pages' },
         {
           badge: 'PDF',
           title: 'Grease Gun Catalogue (F@ctory Express)',

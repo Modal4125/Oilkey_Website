@@ -41,10 +41,10 @@ const catalogue = defineCollection({
     lang: locale,
     title: z.string(),
     category: z.string(),
-    /** Public URL path of the PDF, e.g. /downloads/oks-general-catalogue.pdf */
+    /** Public URL path of the PDF, or an external https URL rendered as a link-out */
     file: z.string(),
-    /** Display size string, e.g. "4.2MB" */
-    size: z.string(),
+    /** Display size string, e.g. "4.2MB" — omit for external links */
+    size: z.string().optional(),
     /** Optional descriptor shown before the size, e.g. "General Catalogue" */
     note: z.string().optional(),
     badge: z.string().default('PDF'),

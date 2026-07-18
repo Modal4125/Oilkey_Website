@@ -35,15 +35,19 @@ for (const entry of entries) {
         <div>
           <Eyebrow class="mb-4">{category}</Eyebrow>
           <div class="border-line bg-panel border">
-            {items.map((entry) => (
-              <CatalogueRow
-                badge={entry.data.badge}
-                title={entry.data.title}
-                meta={[entry.data.note, entry.data.size].filter(Boolean).join(' — ')}
-                href={entry.data.file}
-                label={t.download}
-              />
-            ))}
+            {items.map((entry) => {
+              const external = /^https?:\/\//.test(entry.data.file);
+              return (
+                <CatalogueRow
+                  badge={entry.data.badge}
+                  title={entry.data.title}
+                  meta={[entry.data.note, entry.data.size].filter(Boolean).join(' — ')}
+                  href={entry.data.file}
+                  label={external ? t.visit : t.download}
+                  external={external}
+                />
+              );
+            })}
           </div>
         </div>
       ))

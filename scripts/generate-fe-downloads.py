@@ -28,6 +28,7 @@ META = {
         "company": "オイルキー株式会社",
         "contact": "TEL 072-284-1711 ／ FAX 072-298-7790 ／ oilkey@oilkey.co.jp",
         "disclaimer": "Eプライスはご注文数量が1個の場合の価格（円）です。10個単位のご注文には割引価格が適用されます。価格・納期は予告なく変更される場合があります。",
+        "linknote": "製品名のリンクは、OKS社（oks-germany.com）の製品ページを開きます。",
         "generated": "発行日",
         "products": "製品",
     },
@@ -38,12 +39,26 @@ META = {
         "company": "Oilkey Corporation",
         "contact": "TEL +81-72-284-1711 / FAX +81-72-298-7790 / oilkey@oilkey.co.jp",
         "disclaimer": "The E-price is the unit price (JPY) for an order of one; discounted pricing applies to orders in units of ten. Prices and lead times are subject to change without notice.",
+        "linknote": "Product names link to the manufacturer's product pages on oks-germany.com.",
         "generated": "Issued",
         "products": "products",
     },
 }
 
 NAVY = "02376B"
+LINK_BLUE = "0B5FA5"
+
+
+def load_oks_links():
+    """OKS number → product URL, parsed from src/data/oks-links.ts."""
+    ts = (ROOT / "src/data/oks-links.ts").read_text()
+    base = re.search(r"const BASE = '([^']+)'", ts).group(1)
+    return {num: base + path for num, path in re.findall(r"'(\d+)': `\$\{BASE\}([^`]+)`", ts)}
+
+
+def oks_link(links, name_cell):
+    m = re.match(r"OKS\s*(\d+)", name_cell)
+    return (m.group(0), links.get(m.group(1))) if m else (None, None)
 
 
 def load_categories(lang):
@@ -57,7 +72,7 @@ def load_categories(lang):
     return json.loads(subprocess.check_output(["node", path]))
 
 
-def build_xlsx(lang, cats):
+def build_xlsx(lang, cats, links):
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
     from openpyxl.utils import get_column_letter
@@ -75,6 +90,7 @@ def build_xlsx(lang, cats):
         ("", None),
         (f"{m['generated']}: {date.today().isoformat()}", Font(name="Arial", size=10)),
         (m["disclaimer"], Font(name="Arial", size=10)),
+        (m["linknote"], Font(name="Arial", size=10)),
     ]
     for i, (text, font) in enumerate(rows, start=1):
         cell = info.cell(row=i, column=1, value=text)
@@ -85,6 +101,7 @@ def build_xlsx(lang, cats):
     header_fill = PatternFill("solid", start_color=NAVY)
     header_font = Font(name="Arial", bold=True, size=9, color="FFFFFF")
     body_font = Font(name="Arial", size=9)
+    link_font = Font(name="Arial", size=9, color=LINK_BLUE, underline="single")
     wrap_top = Alignment(wrap_text=True, vertical="top")
 
     for cat in cats:
@@ -102,6 +119,11 @@ def build_xlsx(lang, cats):
                 c = ws.cell(row=i, column=j, value=val)
                 c.font = body_font
                 c.alignment = wrap_top
+                if j == 1:
+                    _, url = oks_link(links, val)
+                    if url:
+                        c.hyperlink = url
+                        c.font = link_font
         note_row = 3 + len(cat["rows"]) + 1
         for k, note in enumerate(cat["notes"]):
             c = ws.cell(row=note_row + k, column=1, value=note)
@@ -118,7 +140,7 @@ def build_xlsx(lang, cats):
     return out
 
 
-def build_pdf(lang, cats):
+def build_pdf(lang, cats, links):
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4, landscape
     from reportlab.lib.styles import ParagraphStyle
@@ -172,6 +194,7 @@ def build_pdf(lang, cats):
         Paragraph(esc(f"{m['company']} — {m['contact']}"), meta_style),
         Paragraph(esc(f"{m['generated']}: {date.today().isoformat()}"), meta_style),
         Paragraph(esc(m["disclaimer"]), meta_style),
+        Paragraph(esc(m["linknote"]), meta_style),
         Spacer(1, 10),
     ]
 
@@ -185,9 +208,16 @@ def build_pdf(lang, cats):
             widths = [0.08, 0.16, 0.22, 0.12, 0.10, 0.10, 0.22]
         col_widths = [w * avail for w in widths]
 
+        def name_para(v):
+            prefix, url = oks_link(links, v)
+            if not url:
+                return Paragraph(esc(v), cell)
+            markup = f'<link href="{url}" color="#{LINK_BLUE}"><u>{esc(prefix)}</u></link>{esc(v[len(prefix):])}'
+            return Paragraph(markup, cell)
+
         data = [[Paragraph(esc(c), head) for c in cat["columns"]]]
         for row in cat["rows"]:
-            data.append([Paragraph(esc(v), cell) for v in row])
+            data.append([name_para(row[0])] + [Paragraph(esc(v), cell) for v in row[1:]])
 
         table = Table(data, colWidths=col_widths, repeatRows=1)
         table.setStyle(
@@ -219,10 +249,11 @@ def build_pdf(lang, cats):
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
+    links = load_oks_links()
     for lang in ("ja", "en"):
         cats = load_categories(lang)
-        x = build_xlsx(lang, cats)
-        p = build_pdf(lang, cats)
+        x = build_xlsx(lang, cats, links)
+        p = build_pdf(lang, cats, links)
         for f in (x, p):
             print(f"{f.relative_to(ROOT)}  {f.stat().st_size / 1024:.0f}KB")
 

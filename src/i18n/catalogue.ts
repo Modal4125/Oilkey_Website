@@ -4,6 +4,8 @@ export interface CatalogueCopy {
   meta: { title: string; description: string };
   header: { eyebrow: string; heading: string; intro: string };
   download: string;
+  /** Label for rows whose file is an external link rather than a download */
+  visit: string;
   empty: string;
 }
 
@@ -20,6 +22,7 @@ export const catalogue: Record<Lang, CatalogueCopy> = {
       intro: '製品カタログ・注文書などの PDF 資料をこちらからダウンロードいただけます。',
     },
     download: 'ダウンロード ↓',
+    visit: '製品ページを見る ↗',
     empty: '資料は準備中です。公開まで今しばらくお待ちください。',
   },
 
@@ -35,6 +38,7 @@ export const catalogue: Record<Lang, CatalogueCopy> = {
       intro: 'Product catalogues, order forms, and other PDF resources are available for download.',
     },
     download: 'Download ↓',
+    visit: 'View products ↗',
     empty: 'Downloads are being prepared — please check back soon.',
   },
 };

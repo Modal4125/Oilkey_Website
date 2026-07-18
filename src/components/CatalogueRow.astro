@@ -5,9 +5,11 @@ interface Props {
   meta: string;
   href: string;
   label: string;
+  /** Opens in a new tab when the href points off-site */
+  external?: boolean;
 }
 
-const { badge, title, meta, href, label } = Astro.props;
+const { badge, title, meta, href, label, external = false } = Astro.props;
 ---
 
 <div
@@ -26,6 +28,8 @@ const { badge, title, meta, href, label } = Astro.props;
   </div>
   <a
     href={href}
+    target={external ? '_blank' : undefined}
+    rel={external ? 'noopener' : undefined}
     class="text-ink hover:text-blueprint flex items-center gap-2 py-1 font-mono text-xs"
   >
     {label}
