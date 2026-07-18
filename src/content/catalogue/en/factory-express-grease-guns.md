@@ -1,7 +1,7 @@
 ---
 lang: en
 title: Grease Gun Catalogue (F@ctory Express)
-category: Grease Guns
+category: Oilkey Products
 file: /downloads/factory-express-grease-guns.pdf
 size: 2.8MB
 note: Product Catalogue

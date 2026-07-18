@@ -1,7 +1,7 @@
 ---
 lang: ja
 title: グリースガン製品カタログ（F@ctory Express）
-category: グリースガン
+category: オイルキー製品
 file: /downloads/factory-express-grease-guns.pdf
 size: 2.8MB
 note: Grease Gun Catalogue

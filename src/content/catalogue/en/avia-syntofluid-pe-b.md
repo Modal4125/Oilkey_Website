@@ -5,5 +5,5 @@ category: Specialty Lubricants
 file: /downloads/avia-syntofluid-pe-b.pdf
 size: 183KB
 note: Pamphlet (Japanese)
-order: 27
+order: 13
 ---

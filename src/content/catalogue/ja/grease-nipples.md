@@ -1,9 +1,9 @@
 ---
 lang: ja
 title: グリースニップル（A・B・C型）製品資料
-category: グリースガン
+category: オイルキー製品
 file: /downloads/grease-nipples.pdf
 size: 182KB
 note: Product Sheet
-order: 25
+order: 5
 ---
