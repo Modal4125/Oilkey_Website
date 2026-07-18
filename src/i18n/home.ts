@@ -34,7 +34,7 @@ export interface HomeCopy {
     download: string;
     rows: { badge: string; title: string; meta: string }[];
   };
-  news: { eyebrow: string; heading: string };
+  news: { eyebrow: string; heading: string; body: string; cta: string };
   cta: { heading: string; body: string; form: string; tel: string; telHref: string };
 }
 
@@ -144,6 +144,8 @@ export const home: Record<Lang, HomeCopy> = {
     news: {
       eyebrow: 'NEWS',
       heading: 'お知らせ',
+      body: '新製品情報・展示会のご案内など、最新のお知らせはブログにて発信しています。',
+      cta: 'ブログを見る ↗',
     },
     cta: {
       heading: '製品や導入について、お気軽にご相談ください。',
@@ -267,6 +269,8 @@ export const home: Record<Lang, HomeCopy> = {
     news: {
       eyebrow: 'NEWS',
       heading: 'News',
+      body: 'Product news, exhibition announcements, and other updates are posted on our blog (Japanese).',
+      cta: 'Visit the blog ↗',
     },
     cta: {
       heading: 'Talk to us about products and applications.',

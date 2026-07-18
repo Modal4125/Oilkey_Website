@@ -54,16 +54,6 @@ const catalogue = defineCollection({
   }),
 });
 
-// News / notices list.
-const news = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/news' }),
-  schema: z.object({
-    lang: locale,
-    title: z.string(),
-    date: z.coerce.date(),
-    tag: z.string(),
-    draft: z.boolean().default(false),
-  }),
-});
+// News lives on the company blog (see lib/links.ts BLOG_URL), not on-site.
 
-export const collections = { pages, products, news, catalogue };
+export const collections = { pages, products, catalogue };

@@ -39,7 +39,9 @@ export default defineConfig({
     '/factory_express/pump.htm': { status: 301, destination: '/products/factory-express' },
     '/contact/index.html': { status: 301, destination: '/contact' },
     '/catalogue/index.html': { status: 301, destination: '/catalogue' },
-    '/news/index.html': { status: 301, destination: '/news' },
+    '/news/index.html': { status: 301, destination: 'https://oilkey.blogspot.com/' },
+    '/news': { status: 301, destination: 'https://oilkey.blogspot.com/' },
+    '/en/news': { status: 301, destination: 'https://oilkey.blogspot.com/' },
   },
 
   i18n: {

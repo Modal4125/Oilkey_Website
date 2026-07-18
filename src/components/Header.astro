@@ -1,6 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import type { Lang } from '../i18n/home';
+import { BLOG_URL } from '../lib/links';
 
 interface Props {
   lang: Lang;
@@ -37,15 +38,27 @@ const subs =
     ? ['Company', 'Business', 'Products', 'Catalogue', 'News']
     : [undefined, undefined, undefined, undefined, undefined];
 
-const navItems = [
+interface NavItem {
+  label: string;
+  sub?: string;
+  href: string;
+  external?: boolean;
+}
+
+const navItems: NavItem[] = [
   { label: labels.company, sub: subs[0], href: url('/company') },
   { label: labels.business, sub: subs[1], href: url('/business') },
   { label: labels.products, sub: subs[2], href: url('/products') },
+  {
+    label: 'F@ctory Express',
+    sub: lang === 'ja' ? 'Web Catalogue' : undefined,
+    href: url('/products/factory-express'),
+  },
   { label: labels.catalogue, sub: subs[3], href: url('/catalogue') },
-  { label: labels.news, sub: subs[4], href: url('/news') },
+  { label: labels.news, sub: subs[4], href: BLOG_URL, external: true },
 ];
 
-const contactItem = { label: labels.contact, href: url('/contact') };
+const contactItem: NavItem = { label: labels.contact, href: url('/contact') };
 
 // Mirror path for the JP/EN toggle: strip any /en prefix, re-localize.
 const basePath = Astro.url.pathname.replace(/^\/en(?=\/|$)/, '') || '/';
@@ -81,6 +94,8 @@ const toggleIdle = 'border-line-dark text-steel';
             <li>
               <a
                 href={item.href}
+                target={item.external ? '_blank' : undefined}
+                rel={item.external ? 'noopener' : undefined}
                 class="text-steel hover:text-amber block text-sm font-medium transition-colors"
               >
                 {item.label}
@@ -126,7 +141,12 @@ const toggleIdle = 'border-line-dark text-steel';
       {
         [...navItems, contactItem].map((item) => (
           <li>
-            <a href={item.href} class="block py-3 text-sm font-medium">
+            <a
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener' : undefined}
+              class="block py-3 text-sm font-medium"
+            >
               {item.label}
             </a>
           </li>
