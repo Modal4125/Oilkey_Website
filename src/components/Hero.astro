@@ -10,17 +10,14 @@ const { eyebrow, lead } = Astro.props;
 ---
 
 <section class="from-panel to-paper bg-gradient-to-b pt-16 pb-16 lg:pt-[104px] lg:pb-24">
-  <div class="wrap grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
-    <div>
-      <Eyebrow class="mb-[22px]">{eyebrow}</Eyebrow>
-      <h1 class="mb-[22px] text-[clamp(32px,4.4vw,54px)] leading-[1.28]">
-        <slot name="heading" />
-      </h1>
-      <p class="text-steel mb-[34px] max-w-[520px] text-base lg:text-[19px]">{lead}</p>
-      <div class="flex flex-wrap gap-3.5">
-        <slot name="buttons" />
-      </div>
+  <div class="wrap">
+    <Eyebrow class="mb-[22px]">{eyebrow}</Eyebrow>
+    <h1 class="mb-[22px] max-w-[17ch] text-[clamp(32px,4.4vw,54px)] leading-[1.28]">
+      <slot name="heading" />
+    </h1>
+    <p class="text-steel mb-[34px] max-w-[560px] text-base lg:text-[19px]">{lead}</p>
+    <div class="flex flex-wrap gap-3.5">
+      <slot name="buttons" />
     </div>
-    <slot name="panel" />
   </div>
 </section>

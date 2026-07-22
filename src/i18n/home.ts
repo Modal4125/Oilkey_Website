@@ -10,7 +10,6 @@ export interface HomeCopy {
     lead: string;
     catalogueCta: string;
     contactCta: string;
-    spec: { title: string; rows: { k: string; v: string }[] };
   };
   trust: { num: string; label: string }[];
   business: {
@@ -53,16 +52,6 @@ export const home: Record<Lang, HomeCopy> = {
       lead: '欧州一流ブランド OKS・BANTLEON の日本総代理店として、また自社工場でのグリースガン製造を通じ、工作機械から航空機まで、あらゆる産業機械の摩擦・摩耗課題に応えています。',
       catalogueCta: '製品カタログを見る ↓',
       contactCta: 'お問い合わせ',
-      spec: {
-        title: 'Corporate Data / 会社概要',
-        rows: [
-          { k: '設立 Founded', v: '1963.06' },
-          { k: '所在地 Location', v: '堺市西区 / Sakai, Osaka' },
-          { k: '主要取扱 Brands', v: 'OKS / BANTLEON' },
-          { k: '製造 Manufacturing', v: 'In-house' },
-          { k: '対応分野 Sectors', v: '6 Industries' },
-        ],
-      },
     },
     trust: [
       { num: '1963', label: '設立 — 60年超の実績' },
@@ -170,16 +159,6 @@ export const home: Record<Lang, HomeCopy> = {
       lead: 'As the exclusive Japan distributor for leading European brands OKS and BANTLEON, and through grease gun manufacturing at our own factory, we solve friction and wear challenges across every industry — from machine tools to aircraft.',
       catalogueCta: 'View Product Catalogue ↓',
       contactCta: 'Contact Us',
-      spec: {
-        title: 'Corporate Data',
-        rows: [
-          { k: 'Founded', v: '1963.06' },
-          { k: 'Location', v: 'Sakai, Osaka' },
-          { k: 'Brands', v: 'OKS / BANTLEON' },
-          { k: 'Manufacturing', v: 'In-house' },
-          { k: 'Sectors', v: '6 Industries' },
-        ],
-      },
     },
     trust: [
       { num: '1963', label: 'Founded — over 60 years in business' },

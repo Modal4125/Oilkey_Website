@@ -1,7 +1,6 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import Hero from './Hero.astro';
-import SpecPanel from './SpecPanel.astro';
 import Button from './Button.astro';
 import SectionHeading from './SectionHeading.astro';
 import Eyebrow from './Eyebrow.astro';
@@ -31,7 +30,6 @@ const productsUrl = getRelativeLocaleUrl(lang, '/products');
     <Button href="#catalogue" variant="primary">{t.hero.catalogueCta}</Button>
     <Button href="#contact" variant="outline">{t.hero.contactCta}</Button>
   </Fragment>
-  <SpecPanel slot="panel" tone="light" title={t.hero.spec.title} rows={t.hero.spec.rows} />
 </Hero>
 
 <div class="bg-deep text-white">
