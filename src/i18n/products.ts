@@ -40,7 +40,7 @@ export const products: Record<Lang, ProductsCopy> = {
         tag: 'LUBRICATION EQUIPMENT',
         title: '注油機器関連製品',
         catalogueId: 'related-products',
-        body: '高圧グリースガンとグリースニップルなどを製造販売しています。グリースガンは自社ブランド「F@ctory Express」シリーズとして展開。グリースニップルは1個から大量見積りまで即日回答いたします。JIS規格品および海外規格品もあります。',
+        body: '高圧グリースガンとグリースニップルなどを製造販売しています。グリースガンは自社ブランド「ジェット」シリーズとして展開。グリースニップルは100個から大量見積りまで即日回答いたします。JIS規格品および海外規格品もあります。',
         standards: ['JIS規格', '海外規格'],
       },
       {
@@ -107,7 +107,7 @@ export const products: Record<Lang, ProductsCopy> = {
         tag: 'LUBRICATION EQUIPMENT',
         title: 'Lubrication Equipment',
         catalogueId: 'related-products',
-        body: 'We manufacture and sell high-pressure grease guns and grease nipples, with grease guns offered under our own F@ctory Express brand. Grease nipple enquiries — from a single piece to volume quotes — are answered the same day. Both JIS-standard and overseas-standard items are available.',
+        body: 'We manufacture and sell high-pressure grease guns and grease nipples, with grease guns offered under our own "Jet" series. Grease nipple enquiries — from 100 pieces to volume quotes — are answered the same day. Both JIS-standard and overseas-standard items are available.',
         standards: ['JIS', 'Overseas standards'],
       },
       {
