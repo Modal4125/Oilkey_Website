@@ -28,7 +28,7 @@ export const factoryExpress: Record<Lang, FactoryExpressCopy> = {
       eyebrow: 'F@CTORY EXPRESS',
       heading: 'F@ctory Express 製品カタログ',
       intro:
-        'OKS特殊潤滑剤と自社製グリースガン関連製品のWebカタログです。Eプライスはご注文数量が1個の場合の価格（円）です。10個単位のご注文には割引価格が適用されます。',
+        'OKS特殊潤滑剤と自社製グリースガン関連製品のWebカタログです。Eプライスはご注文数量が1個の場合の価格（円）です。',
     },
     downloads: { pdf: 'PDF版をダウンロード ↓', xlsx: 'Excel版をダウンロード ↓' },
     oksLinkNote:
@@ -50,7 +50,7 @@ export const factoryExpress: Record<Lang, FactoryExpressCopy> = {
       eyebrow: 'F@CTORY EXPRESS',
       heading: 'F@ctory Express Product Catalogue',
       intro:
-        'The web catalogue of OKS specialty lubricants and our own grease gun products. The E-price is the unit price (JPY) for an order of one; discounted pricing applies to orders in units of ten.',
+        'The web catalogue of OKS specialty lubricants and our own grease gun products. The E-price is the unit price (JPY) for an order of one.',
     },
     jaNotice:
       'Translated from the Japanese catalogue for reference — the Japanese edition is authoritative. All prices are in Japanese yen. For assistance in English, please contact us.',

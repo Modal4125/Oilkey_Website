@@ -413,7 +413,7 @@ export const factoryExpressEn: FeCategory[] = [
       '*2 NLGI grade (consistency) — centred on No. 2; higher numbers are firmer, lower numbers are softer.',
       '*3 Mox-Active — a proprietary OKS additive combining organic molybdenum with several solid lubricants. It smooths the lubricated surface and reduces friction and wear.',
       '*4 Sizes — 400 g items come as cylindrical cartridges (10 per box). A dedicated grease gun (sold separately) is required for use; see the Related Products section.',
-      '*5 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders in units of ten; please enquire using the fax quote request form.',
+      '*5 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*6 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*7 SOS express — items eligible for our emergency delivery service. Request SOS delivery when ordering; service-area restrictions apply. Contact us for details.',
       '*8 USDA-H1/NSF-H1 — certified by public bodies as lubricants usable where incidental contact with food is possible.',
@@ -634,7 +634,7 @@ export const factoryExpressEn: FeCategory[] = [
       '*1 Service temperature — the temperature at which the product can be used under continuous conditions. Figures in parentheses apply when contact with air is restricted.',
       '*2 Weld load — higher values indicate greater load-carrying capacity.',
       '*3 Mox-Active — a proprietary OKS additive combining organic molybdenum with several solid lubricants. It smooths the lubricated surface and reduces friction and wear.',
-      '*4 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders in units of ten; please enquire using the fax quote request form.',
+      '*4 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*5 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*6 SOS express — items eligible for our emergency delivery service. Request SOS delivery when ordering; service-area restrictions apply. Contact us for details.',
     ],
@@ -787,7 +787,7 @@ export const factoryExpressEn: FeCategory[] = [
     ],
     notes: [
       '*1 Service temperature — the temperature at which the product can be used under continuous conditions.',
-      '*2 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders in units of ten; please enquire using the fax quote request form.',
+      '*2 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*3 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*4 SOS express — items eligible for our emergency delivery service. Request SOS delivery when ordering; service-area restrictions apply. Contact us for details.',
     ],
@@ -1021,7 +1021,7 @@ export const factoryExpressEn: FeCategory[] = [
     notes: [
       '*1 Service temperature — the temperature at which the product can be used under continuous conditions.',
       '*2 Mox-Active — a proprietary OKS additive combining organic molybdenum with several solid lubricants. It smooths the lubricated surface and reduces friction and wear.',
-      '*3 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders in units of ten; please enquire using the fax quote request form.',
+      '*3 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*4 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*5 SOS express — items eligible for our emergency delivery service. Request SOS delivery when ordering; service-area restrictions apply. Contact us for details.',
       '*6 USDA-H1/NSF-H1 — certified by public bodies as lubricants usable where incidental contact with food is possible.',
@@ -1186,8 +1186,8 @@ export const factoryExpressEn: FeCategory[] = [
     ],
     notes: [
       '*1 Service temperature — the temperature at which the product can be used under continuous conditions; the drop point is higher still, and short-term use up to the drop point is possible.',
-      '*2 Sizes — 400 g items come as cylindrical cartridges (10 per box). A dedicated grease gun is required for use; sold separately at 10,000 JPY.',
-      '*3 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders in units of ten; please enquire using the fax quote request form.',
+      '*2 Sizes — 400 g items come as cylindrical cartridges (10 per box). A dedicated grease gun is required for use.',
+      '*3 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*4 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*5 SOS express — items eligible for our emergency delivery service. Request SOS delivery when ordering; service-area restrictions apply. Contact us for details.',
     ],
@@ -1340,7 +1340,7 @@ export const factoryExpressEn: FeCategory[] = [
     ],
     notes: [
       '*1 Service temperature — the temperature at which the product can be used under continuous conditions. Figures in parentheses apply when contact with air is restricted.',
-      '*2 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders in units of ten; please enquire using the fax quote request form.',
+      '*2 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*3 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*4 SOS express — items eligible for our emergency delivery service. Request SOS delivery when ordering; service-area restrictions apply. Contact us for details.',
       '*5 USDA-H1/NSF-H1 — certified by public bodies as lubricants usable where incidental contact with food is possible.',
@@ -1354,11 +1354,11 @@ export const factoryExpressEn: FeCategory[] = [
     columns: ['Item no.', 'Product', 'Features', 'Type', 'E-price*1', 'Dispatch*2', 'Remarks'],
     rows: [
       [
-        '2118',
+        '2113',
         'High-Pressure Grease Gun\nLS-600E',
         'For 400 g cartridge greases',
         'Manual',
-        '8,000',
+        '5,800',
         'Same day',
         'Lever type, with grip.',
       ],
@@ -1373,7 +1373,7 @@ export const factoryExpressEn: FeCategory[] = [
       ],
     ],
     notes: [
-      '*1 E-price — the price for an order quantity of one (JPY). Discounted prices apply to orders of ten or more; please enquire using the fax quote request form.',
+      '*1 E-price — the price for an order quantity of one (JPY). Please enquire using the fax quote request form.',
       '*2 Dispatch — "On request": please contact us. Dispatch dates are updated according to stock.',
       '*3 Grease nipples — please specify the thread standard and material when ordering. Contact us for details.',
     ],
