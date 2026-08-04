@@ -64,7 +64,6 @@ export const business: Record<Lang, BusinessCopy> = {
           'グリースガンをはじめとする潤滑関連機器を、自社工場で一貫して製造しています。「F@ctory Express」ブランドとして展開するグリースガンシリーズは、企画から製造、品質管理までを社内で行うことで、現場のニーズに即した仕様変更や短納期対応を実現しています。',
         ],
         items: [
-          { text: 'ドライ潤滑剤（フッ素樹脂／PTFE、ベントン系）の製造・販売' },
           { text: '防錆剤の製造・販売' },
           { text: '各種グリースガン、関連消耗品の製造' },
         ],
@@ -119,7 +118,6 @@ export const business: Record<Lang, BusinessCopy> = {
           'We manufacture grease guns and related lubrication equipment end-to-end at our own factory. Our grease gun lineup, sold under the "F@ctory Express" brand, is planned, produced, and quality-checked in-house — which lets us respond to custom specifications and short lead times that off-the-shelf suppliers can\'t match.',
         ],
         items: [
-          { text: 'Manufacture and sale of dry lubricants (PTFE / Bentone-based)' },
           { text: 'Manufacture and sale of corrosion inhibitors' },
           { text: 'Manufacture of grease guns and related consumables' },
         ],

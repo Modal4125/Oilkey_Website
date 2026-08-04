@@ -85,7 +85,7 @@ export const home: Record<Lang, HomeCopy> = {
     products: {
       eyebrow: 'PRODUCTS',
       heading: '取扱製品',
-      intro: '特殊潤滑油からドライ潤滑剤、防錆剤まで。詳細は取扱製品ページをご覧ください。',
+      intro: '特殊潤滑油から防錆剤まで。詳細は取扱製品ページをご覧ください。',
       linkLabel: '詳しく見る →',
       items: [
         {
@@ -97,11 +97,6 @@ export const home: Record<Lang, HomeCopy> = {
           icon: 'grease-gun',
           title: 'グリースガン',
           body: '自社製造の F@ctory Express グリースガンシリーズ。',
-        },
-        {
-          icon: 'layers',
-          title: 'ドライ潤滑剤',
-          body: 'フッ素樹脂（PTFE）・ベントン系のドライ潤滑コーティング。',
         },
         {
           icon: 'shield',
@@ -193,7 +188,7 @@ export const home: Record<Lang, HomeCopy> = {
       eyebrow: 'PRODUCTS',
       heading: 'Products',
       intro:
-        'From specialty lubricants to dry film coatings and corrosion protection. See the products page for the full range.',
+        'From specialty lubricants to corrosion protection. See the products page for the full range.',
       linkLabel: 'Learn more →',
       items: [
         {
@@ -205,11 +200,6 @@ export const home: Record<Lang, HomeCopy> = {
           icon: 'grease-gun',
           title: 'Grease Guns',
           body: 'Our own F@ctory Express grease gun series, made in-house.',
-        },
-        {
-          icon: 'layers',
-          title: 'Dry Lubricants',
-          body: 'PTFE and bentone-based dry film lubricant coatings.',
         },
         {
           icon: 'shield',
