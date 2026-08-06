@@ -40,4 +40,4 @@ For questions about how we handle personal information:
 
 Oilkey Corporation
 617-2F Taiheiji, Nishi-ku, Sakai, Osaka 593-8314, Japan
-TEL: +81-72-284-1711 / Email: oilkey@oilkey.co.jp
+TEL: +81-72-284-1711

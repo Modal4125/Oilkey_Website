@@ -77,7 +77,7 @@ export const contact: Record<Lang, ContactCopy> = {
         'お問い合わせいただきありがとうございます。内容を確認のうえ、担当者より2〜3営業日以内にご連絡いたします。',
       errorValidation: '入力内容に不備があります。必須項目をご確認のうえ、再度送信してください。',
       errorServer:
-        '送信に失敗しました。時間をおいて再度お試しいただくか、お電話（072-284-1711）またはメール（oilkey@oilkey.co.jp）にてご連絡ください。',
+        '送信に失敗しました。時間をおいて再度お試しいただくか、お電話（072-284-1711）にてご連絡ください。',
     },
     panel: {
       title: 'Direct Contact / 直接のお問い合わせ',
@@ -89,8 +89,6 @@ export const contact: Record<Lang, ContactCopy> = {
       hours: '平日 9:00〜17:00',
       faxLabel: 'FAX',
       fax: '072-298-7790',
-      emailLabel: 'Email',
-      email: 'oilkey@oilkey.co.jp',
     },
   },
 
@@ -139,7 +137,7 @@ export const contact: Record<Lang, ContactCopy> = {
       errorValidation:
         'Some required fields were missing or invalid. Please check the form and try again.',
       errorServer:
-        'Something went wrong sending your message. Please try again later, or reach us by phone (+81-72-284-1711) or email (oilkey@oilkey.co.jp).',
+        'Something went wrong sending your message. Please try again later, or reach us by phone (+81-72-284-1711).',
     },
     panel: {
       title: 'Direct Contact',
@@ -151,8 +149,6 @@ export const contact: Record<Lang, ContactCopy> = {
       hours: 'Weekdays 9:00–17:00 JST',
       faxLabel: 'Fax',
       fax: '+81-72-298-7790',
-      emailLabel: 'Email',
-      email: 'oilkey@oilkey.co.jp',
     },
   },
 };
