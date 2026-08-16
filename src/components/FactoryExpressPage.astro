@@ -74,7 +74,8 @@ const productListSchema = {
       </p>
     )
   }
-  <nav aria-label="Categories" class="flex flex-wrap gap-2">
+  {/* Pill nav for narrow screens; lg+ gets the sticky sidebar below instead. */}
+  <nav aria-label={t.categoriesLabel} class="flex flex-wrap gap-2 lg:hidden">
     {
       catalogue.map((cat) => (
         <a
@@ -97,87 +98,149 @@ const productListSchema = {
   <p class="text-steel-light mt-3 text-xs">{t.oksLinkNote}</p>
 </div>
 
-{
-  catalogue.map((cat, i) => (
-    <section id={cat.id} class="scroll-mt-24 py-10 lg:py-14">
-      <div class="mx-auto w-full max-w-[1600px] px-8">
-        <div class="text-amber mb-3 flex items-baseline gap-3 font-mono text-xs font-semibold">
-          <span>{String(i + 1).padStart(2, '0')}</span>
-          <span>{cat.tag}</span>
-        </div>
-        <h2 class="mb-5 text-[22px] font-bold">
-          {cat.title}
-          <span class="text-steel ml-3 font-mono text-xs font-normal">
-            {cat.rows.length}
-            {t.countSuffix}
-          </span>
-        </h2>
-        <div class="border-line overflow-x-auto rounded-xs border">
-          <table class="w-full min-w-[1080px] border-collapse text-[13px]">
-            <thead>
-              <tr>
-                {cat.columns.map((col) => (
-                  <th class="bg-panel border-line border-b px-3.5 py-3 text-left align-bottom text-xs font-semibold whitespace-pre-line">
-                    {col}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {cat.rows.map((row) => (
-                <tr class="even:bg-panel">
-                  {row.map((cell, j) => {
-                    const link = j === 0 ? oksUrl(cell) : undefined;
-                    const name = link ? oksDesignation(cell)! : '';
-                    const rest = link ? cell.slice(name.length) : '';
-                    return (
-                      <td
-                        class:list={[
-                          'border-line border-t px-3.5 py-3 align-top whitespace-pre-line',
-                          j === 0 && 'text-ink min-w-[190px] font-medium',
-                          j === 1 && 'text-steel min-w-[260px]',
-                          j > 1 && 'text-steel min-w-[104px]',
-                        ]}
-                      >
-                        {link ? (
-                          <>
-                            <a
-                              href={link}
-                              target="_blank"
-                              rel="noopener"
-                              class="text-blueprint hover:text-amber underline decoration-dotted underline-offset-2 transition-colors"
-                            >
-                              {name}
-                            </a>
-                            {rest}
-                          </>
-                        ) : (
-                          cell
-                        )}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {cat.notes.length > 0 && (
-          <div class="mt-4">
-            <div class="text-steel mb-1.5 font-mono text-[11px] font-semibold tracking-[0.1em] uppercase">
-              {t.notesLabel}
-            </div>
-            <ul class="text-steel space-y-1 text-xs">
-              {cat.notes.map((note) => (
-                <li>{note}</li>
-              ))}
-            </ul>
+<div class="mx-auto flex w-full max-w-[1600px] gap-10 px-8">
+  {/* Sticky category rail — rides alongside the tables down to the last one. */}
+  <nav
+    aria-label={t.categoriesLabel}
+    class="sticky top-24 hidden h-fit max-h-[calc(100vh-8rem)] w-44 shrink-0 self-start overflow-y-auto pt-10 lg:block lg:pt-14"
+  >
+    <div class="text-steel mb-2.5 font-mono text-[11px] font-semibold tracking-[0.1em] uppercase">
+      {t.categoriesLabel}
+    </div>
+    <ul class="border-line space-y-px border-l">
+      {
+        catalogue.map((cat, i) => (
+          <li>
+            <a
+              href={`#${cat.id}`}
+              data-cat-link={cat.id}
+              class="hover:text-amber aria-[current=true]:border-amber aria-[current=true]:text-amber -ml-px flex items-baseline gap-2 border-l-2 border-transparent py-1.5 pl-3 text-[13px] leading-snug font-medium transition-colors aria-[current=true]:font-semibold"
+            >
+              <span class="text-steel-light font-mono text-[10px]">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <span>{cat.title}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="min-w-0 flex-1">
+    {
+      catalogue.map((cat, i) => (
+        <section id={cat.id} class="scroll-mt-24 py-10 lg:py-14">
+          <div class="text-amber mb-3 flex items-baseline gap-3 font-mono text-xs font-semibold">
+            <span>{String(i + 1).padStart(2, '0')}</span>
+            <span>{cat.tag}</span>
           </div>
-        )}
-      </div>
-    </section>
-  ))
-}
+          <h2 class="mb-5 text-[22px] font-bold">
+            {cat.title}
+            <span class="text-steel ml-3 font-mono text-xs font-normal">
+              {cat.rows.length}
+              {t.countSuffix}
+            </span>
+          </h2>
+          <div class="border-line max-h-[calc(100vh-140px)] overflow-auto rounded-xs border">
+            {/* border-separate keeps the header's bottom border attached to the
+              sticky <th>; with border-collapse the border belongs to the table
+              and scrolls away underneath it. */}
+            <table class="w-full min-w-[1080px] border-separate border-spacing-0 text-[13px]">
+              <thead>
+                <tr>
+                  {cat.columns.map((col) => (
+                    <th class="bg-panel border-line sticky top-0 z-10 border-b px-3.5 py-3 text-left align-bottom text-xs font-semibold whitespace-pre-line">
+                      {col}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {cat.rows.map((row) => (
+                  <tr class="even:bg-panel">
+                    {row.map((cell, j) => {
+                      const link = j === 0 ? oksUrl(cell) : undefined;
+                      const name = link ? oksDesignation(cell)! : '';
+                      const rest = link ? cell.slice(name.length) : '';
+                      return (
+                        <td
+                          class:list={[
+                            'border-line border-t px-3.5 py-3 align-top whitespace-pre-line',
+                            j === 0 && 'text-ink min-w-[190px] font-medium',
+                            j === 1 && 'text-steel min-w-[260px]',
+                            j > 1 && 'text-steel min-w-[104px]',
+                          ]}
+                        >
+                          {link ? (
+                            <>
+                              <a
+                                href={link}
+                                target="_blank"
+                                rel="noopener"
+                                class="text-blueprint hover:text-amber underline decoration-dotted underline-offset-2 transition-colors"
+                              >
+                                {name}
+                              </a>
+                              {rest}
+                            </>
+                          ) : (
+                            cell
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {cat.notes.length > 0 && (
+            <div class="mt-4">
+              <div class="text-steel mb-1.5 font-mono text-[11px] font-semibold tracking-[0.1em] uppercase">
+                {t.notesLabel}
+              </div>
+              <ul class="text-steel space-y-1 text-xs">
+                {cat.notes.map((note) => (
+                  <li>{note}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</div>
+
+{/* Marks the category the reader is currently in on the sticky rail. */}
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('[data-cat-link]');
+  const sections = [...links].map((link) => document.getElementById(link.dataset.catLink!));
+
+  let queued = false;
+  const sync = () => {
+    queued = false;
+    let active = 0;
+    sections.forEach((section, i) => {
+      if (section && section.getBoundingClientRect().top <= 140) active = i;
+    });
+    links.forEach((link, i) => link.setAttribute('aria-current', i === active ? 'true' : 'false'));
+  };
+
+  if (links.length) {
+    sync();
+    addEventListener(
+      'scroll',
+      () => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(sync);
+      },
+      { passive: true },
+    );
+  }
+</script>
 
 <section class="pb-16 lg:pb-20">
   <div class="wrap">
