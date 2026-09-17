@@ -41,6 +41,8 @@ const subs =
 interface NavItem {
   label: string;
   sub?: string;
+  /** Used in the mobile list, where the sub-label is not rendered. */
+  mobileLabel?: string;
   href: string;
   external?: boolean;
 }
@@ -50,8 +52,9 @@ const navItems: NavItem[] = [
   { label: labels.business, sub: subs[1], href: url('/business') },
   { label: labels.products, sub: subs[2], href: url('/products') },
   {
-    label: 'F@ctory Express (OKS Catalogue)',
-    sub: lang === 'ja' ? 'Web Catalogue' : undefined,
+    label: 'F@ctory Express',
+    sub: '(OKS Catalogue)',
+    mobileLabel: 'F@ctory Express (OKS Catalogue)',
     href: url('/products/factory-express'),
   },
   { label: labels.catalogue, sub: subs[3], href: url('/catalogue') },
@@ -96,11 +99,13 @@ const toggleIdle = 'border-line-dark text-steel';
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener' : undefined}
-                class="text-steel hover:text-amber block text-sm font-medium transition-colors"
+                class="text-steel hover:text-amber block text-sm font-medium whitespace-nowrap transition-colors"
               >
                 {item.label}
                 {item.sub && (
-                  <span class="block text-[11px] font-normal opacity-60">{item.sub}</span>
+                  <span class="block text-[11px] font-normal whitespace-nowrap opacity-60">
+                    {item.sub}
+                  </span>
                 )}
               </a>
             </li>
@@ -118,7 +123,7 @@ const toggleIdle = 'border-line-dark text-steel';
     </nav>
 
     <div class="flex items-center gap-[22px]">
-      <span class="text-steel hidden font-mono text-[13px] lg:inline">{labels.tel}</span>
+      <span class="text-steel hidden font-mono text-[13px] xl:inline">{labels.tel}</span>
       <div class="flex items-center gap-1.5 font-mono text-xs">
         <a href={jaHref} class:list={[toggleBase, lang === 'ja' ? toggleActive : toggleIdle]}>JP</a>
         <a href={enHref} class:list={[toggleBase, lang === 'en' ? toggleActive : toggleIdle]}>EN</a>
@@ -147,7 +152,7 @@ const toggleIdle = 'border-line-dark text-steel';
               rel={item.external ? 'noopener' : undefined}
               class="block py-3 text-sm font-medium"
             >
-              {item.label}
+              {item.mobileLabel ?? item.label}
             </a>
           </li>
         ))
