@@ -19,6 +19,9 @@ export interface ProductsCopy {
   brandGuide: [string, string, string, string, string];
   categories: ProductCategory[];
   note: string;
+  /** Bottom CTA into the F@ctory Express catalogue (OKS products) */
+  feCatalogueCta: string;
+  /** Bottom CTA into the catalogue page (Oilkey and BANTLEON products) */
   catalogueCta: string;
   contactCta: string;
 }
@@ -85,8 +88,9 @@ export const products: Record<Lang, ProductsCopy> = {
         body: '設備保全・生産管理・自動車・二輪車・建設機械・電子産業向けケミカル用品です。',
       },
     ],
-    note: '製品詳細は F@ctory Express カタログをご覧ください。品選定のご相談もお気軽にどうぞ。',
-    catalogueCta: 'カタログを見る',
+    note: '製品詳細は各カタログをご覧ください。品選定のご相談もお気軽にどうぞ。',
+    feCatalogueCta: 'F@ctory Express カタログ（OKS）',
+    catalogueCta: 'オイルキー・BANTLEON カタログ',
     contactCta: 'お問い合わせ',
   },
 
@@ -151,8 +155,9 @@ export const products: Record<Lang, ProductsCopy> = {
         body: 'Chemical products for plant maintenance, production management, automotive, motorcycle, construction machinery, and the electronics industry.',
       },
     ],
-    note: 'See the F@ctory Express catalogue for product details — and feel free to ask us for help selecting the right product.',
-    catalogueCta: 'View Catalogue',
+    note: 'See our catalogues for product details — and feel free to ask us for help selecting the right product.',
+    feCatalogueCta: 'F@ctory Express Catalogue (OKS)',
+    catalogueCta: 'Oilkey & BANTLEON Catalogue',
     contactCta: 'Contact Us',
   },
 };
