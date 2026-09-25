@@ -61,7 +61,7 @@ export const business: Record<Lang, BusinessCopy> = {
         tag: 'MANUFACTURING',
         title: '自社工場での一貫製造',
         paras: [
-          'グリースガンをはじめとする潤滑関連機器を、自社工場で一貫して製造しています。「F@ctory Express」ブランドとして展開するグリースガンシリーズは、企画から製造、品質管理までを社内で行うことで、現場のニーズに即した仕様変更や短納期対応を実現しています。',
+          'グリースガンをはじめとする潤滑関連機器を、自社工場で一貫して製造しています。「ジェット」ブランドとして展開するグリースガンシリーズは、企画から製造、品質管理までを社内で行うことで、現場のニーズに即した仕様変更や短納期対応を実現しています。',
         ],
         items: [
           { text: '防錆剤の製造・販売' },
@@ -115,7 +115,7 @@ export const business: Record<Lang, BusinessCopy> = {
         tag: 'MANUFACTURING',
         title: 'In-House Manufacturing',
         paras: [
-          'We manufacture grease guns and related lubrication equipment end-to-end at our own factory. Our grease gun lineup, sold under the "F@ctory Express" brand, is planned, produced, and quality-checked in-house — which lets us respond to custom specifications and short lead times that off-the-shelf suppliers can\'t match.',
+          'We manufacture grease guns and related lubrication equipment end-to-end at our own factory. Our grease gun lineup, sold under the "Jet" brand, is planned, produced, and quality-checked in-house — which lets us respond to custom specifications and short lead times that off-the-shelf suppliers can\'t match.',
         ],
         items: [
           { text: 'Manufacture and sale of corrosion inhibitors' },
