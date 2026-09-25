@@ -96,7 +96,7 @@ export const home: Record<Lang, HomeCopy> = {
         {
           icon: 'grease-gun',
           title: 'グリースガン',
-          body: '自社製造の F@ctory Express グリースガンシリーズ。',
+          body: '自社製造の「ジェット」グリースガンシリーズ。',
         },
         {
           icon: 'shield',
@@ -119,8 +119,8 @@ export const home: Record<Lang, HomeCopy> = {
         { badge: 'WEB', title: 'OKS 特殊潤滑油 総合カタログ', meta: 'OKS社 製品ページ' },
         {
           badge: 'PDF',
-          title: 'グリースガン製品カタログ（F@ctory Express）',
-          meta: 'Grease Gun Catalogue — 2.8MB',
+          title: 'F@ctory Express 製品カタログ（OKS）',
+          meta: 'Product Catalogue — 2.8MB',
         },
         { badge: 'FAX', title: 'FAX注文書・見積依頼書', meta: 'Order / Quote Forms — 480KB' },
       ],
@@ -199,7 +199,7 @@ export const home: Record<Lang, HomeCopy> = {
         {
           icon: 'grease-gun',
           title: 'Grease Guns',
-          body: 'Our own F@ctory Express grease gun series, made in-house.',
+          body: 'Our own "Jet" grease gun series, made in-house.',
         },
         {
           icon: 'shield',
@@ -229,7 +229,7 @@ export const home: Record<Lang, HomeCopy> = {
         { badge: 'WEB', title: 'OKS Specialty Lubricants', meta: 'Manufacturer product pages' },
         {
           badge: 'PDF',
-          title: 'Grease Gun Catalogue (F@ctory Express)',
+          title: 'F@ctory Express Catalogue (OKS)',
           meta: 'Product Catalogue — 2.8MB',
         },
         { badge: 'FAX', title: 'Fax Order & Quote Forms', meta: 'Order / Quote Forms — 480KB' },
