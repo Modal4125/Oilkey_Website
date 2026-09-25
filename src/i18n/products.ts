@@ -88,7 +88,7 @@ export const products: Record<Lang, ProductsCopy> = {
         body: '設備保全・生産管理・自動車・二輪車・建設機械・電子産業向けケミカル用品です。',
       },
     ],
-    note: '製品詳細は各カタログをご覧ください。品選定のご相談もお気軽にどうぞ。',
+    note: '製品詳細は各カタログをご覧ください。製品選定のご相談もお気軽にどうぞ。',
     feCatalogueCta: 'F@ctory Express カタログ（OKS）',
     catalogueCta: 'オイルキー・BANTLEON カタログ',
     contactCta: 'お問い合わせ',
