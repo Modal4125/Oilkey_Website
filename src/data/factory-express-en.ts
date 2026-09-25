@@ -1360,7 +1360,7 @@ export const factoryExpressEn: FeCategory[] = [
         'Manual',
         '5,800',
         'Same day',
-        'Lever type, with grip.',
+        'Lever type, with grip. Recommended for use with OKS greases.',
       ],
       [
         '—',

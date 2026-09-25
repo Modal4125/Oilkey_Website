@@ -12,10 +12,20 @@ interface Props {
 const { lang } = Astro.props;
 const t = products[lang];
 const feCatalogueUrl = getRelativeLocaleUrl(lang, '/products/factory-express');
+const catalogueUrl = getRelativeLocaleUrl(lang, '/catalogue');
 const contactUrl = getRelativeLocaleUrl(lang, '/contact');
+const [guideBefore, guideFe, guideMiddle, guideCatalogue, guideAfter] = t.brandGuide;
 ---
 
-<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro} />
+<PageHeader eyebrow={t.header.eyebrow} heading={t.header.heading} intro={t.header.intro}>
+  <p class="text-steel mt-2 max-w-[640px] text-[15px]">
+    {guideBefore}<a href={feCatalogueUrl} class="text-amber font-medium hover:underline"
+      >{guideFe}</a
+    >{guideMiddle}<a href={catalogueUrl} class="text-amber font-medium hover:underline"
+      >{guideCatalogue}</a
+    >{guideAfter}
+  </p>
+</PageHeader>
 
 <section class="py-16 lg:py-20">
   <div class="wrap">
@@ -38,12 +48,6 @@ const contactUrl = getRelativeLocaleUrl(lang, '/contact');
                 ))}
               </div>
             )}
-            <a
-              href={`${feCatalogueUrl}#${cat.catalogueId}`}
-              class="text-amber mt-5 inline-block font-mono text-xs font-medium"
-            >
-              {t.catalogueLink}
-            </a>
           </div>
         ))
       }
@@ -52,7 +56,8 @@ const contactUrl = getRelativeLocaleUrl(lang, '/contact');
     <div class="border-line bg-panel mt-10 rounded-xs border px-[30px] py-10 text-center">
       <p class="text-steel text-sm">{t.note}</p>
       <div class="mt-6 flex flex-wrap justify-center gap-3.5">
-        <Button href={feCatalogueUrl} variant="primary">{t.catalogueCta}</Button>
+        <Button href={feCatalogueUrl} variant="primary">{t.feCatalogueCta}</Button>
+        <Button href={catalogueUrl} variant="primary">{t.catalogueCta}</Button>
         <Button href={contactUrl} variant="outline">{t.contactCta}</Button>
       </div>
     </div>

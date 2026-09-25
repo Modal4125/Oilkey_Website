@@ -35,12 +35,14 @@ const url = (path: string) => getRelativeLocaleUrl(lang, path);
 // English sub-labels under the Japanese nav items, per the Trust template.
 const subs =
   lang === 'ja'
-    ? ['Company', 'Business', 'Products', 'Catalogue', 'News']
-    : [undefined, undefined, undefined, undefined, undefined];
+    ? ['Company', 'Business', 'Products', 'News']
+    : [undefined, undefined, undefined, undefined];
 
 interface NavItem {
   label: string;
   sub?: string;
+  /** Used in the mobile list, where the sub-label is not rendered. */
+  mobileLabel?: string;
   href: string;
   external?: boolean;
 }
@@ -49,13 +51,20 @@ const navItems: NavItem[] = [
   { label: labels.company, sub: subs[0], href: url('/company') },
   { label: labels.business, sub: subs[1], href: url('/business') },
   { label: labels.products, sub: subs[2], href: url('/products') },
+  // The two catalogue items are subtitled with the brands each one covers.
+  {
+    label: labels.catalogue,
+    sub: 'Oilkey and BANTLEON',
+    mobileLabel: `${labels.catalogue} (Oilkey and BANTLEON)`,
+    href: url('/catalogue'),
+  },
   {
     label: 'F@ctory Express',
-    sub: lang === 'ja' ? 'Web Catalogue' : undefined,
+    sub: 'OKS',
+    mobileLabel: 'F@ctory Express (OKS)',
     href: url('/products/factory-express'),
   },
-  { label: labels.catalogue, sub: subs[3], href: url('/catalogue') },
-  { label: labels.news, sub: subs[4], href: BLOG_URL, external: true },
+  { label: labels.news, sub: subs[3], href: BLOG_URL, external: true },
 ];
 
 const contactItem: NavItem = { label: labels.contact, href: url('/contact') };
@@ -88,7 +97,8 @@ const toggleIdle = 'border-line-dark text-steel';
     </a>
 
     <nav class="hidden lg:block">
-      <ul class="flex items-center gap-[26px]">
+      {/* Top-aligned so labels share a line whether or not an item has a sub-label. */}
+      <ul class="flex items-start gap-5">
         {
           navItems.map((item) => (
             <li>
@@ -96,17 +106,19 @@ const toggleIdle = 'border-line-dark text-steel';
                 href={item.href}
                 target={item.external ? '_blank' : undefined}
                 rel={item.external ? 'noopener' : undefined}
-                class="text-steel hover:text-amber block text-sm font-medium transition-colors"
+                class="text-steel hover:text-amber block text-sm font-medium whitespace-nowrap transition-colors"
               >
                 {item.label}
                 {item.sub && (
-                  <span class="block text-[11px] font-normal opacity-60">{item.sub}</span>
+                  <span class="block text-[11px] font-normal whitespace-nowrap opacity-60">
+                    {item.sub}
+                  </span>
                 )}
               </a>
             </li>
           ))
         }
-        <li>
+        <li class="self-center">
           <a
             href={contactItem.href}
             class="bg-amber hover:bg-amber-bright rounded-xs px-[18px] py-[9px] text-[13px] font-bold text-white transition-colors"
@@ -118,7 +130,7 @@ const toggleIdle = 'border-line-dark text-steel';
     </nav>
 
     <div class="flex items-center gap-[22px]">
-      <span class="text-steel hidden font-mono text-[13px] lg:inline">{labels.tel}</span>
+      <span class="text-steel hidden font-mono text-[13px] xl:inline">{labels.tel}</span>
       <div class="flex items-center gap-1.5 font-mono text-xs">
         <a href={jaHref} class:list={[toggleBase, lang === 'ja' ? toggleActive : toggleIdle]}>JP</a>
         <a href={enHref} class:list={[toggleBase, lang === 'en' ? toggleActive : toggleIdle]}>EN</a>
@@ -147,7 +159,7 @@ const toggleIdle = 'border-line-dark text-steel';
               rel={item.external ? 'noopener' : undefined}
               class="block py-3 text-sm font-medium"
             >
-              {item.label}
+              {item.mobileLabel ?? item.label}
             </a>
           </li>
         ))
