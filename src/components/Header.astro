@@ -97,7 +97,8 @@ const toggleIdle = 'border-line-dark text-steel';
     </a>
 
     <nav class="hidden lg:block">
-      <ul class="flex items-center gap-5">
+      {/* Top-aligned so labels share a line whether or not an item has a sub-label. */}
+      <ul class="flex items-start gap-5">
         {
           navItems.map((item) => (
             <li>
@@ -117,7 +118,7 @@ const toggleIdle = 'border-line-dark text-steel';
             </li>
           ))
         }
-        <li>
+        <li class="self-center">
           <a
             href={contactItem.href}
             class="bg-amber hover:bg-amber-bright rounded-xs px-[18px] py-[9px] text-[13px] font-bold text-white transition-colors"
