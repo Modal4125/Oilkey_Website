@@ -35,8 +35,8 @@ const url = (path: string) => getRelativeLocaleUrl(lang, path);
 // English sub-labels under the Japanese nav items, per the Trust template.
 const subs =
   lang === 'ja'
-    ? ['Company', 'Business', 'Products', 'Catalogue', 'News']
-    : [undefined, undefined, undefined, undefined, undefined];
+    ? ['Company', 'Business', 'Products', 'News']
+    : [undefined, undefined, undefined, undefined];
 
 interface NavItem {
   label: string;
@@ -51,14 +51,20 @@ const navItems: NavItem[] = [
   { label: labels.company, sub: subs[0], href: url('/company') },
   { label: labels.business, sub: subs[1], href: url('/business') },
   { label: labels.products, sub: subs[2], href: url('/products') },
-  { label: labels.catalogue, sub: subs[3], href: url('/catalogue') },
+  // The two catalogue items are subtitled with the brands each one covers.
+  {
+    label: labels.catalogue,
+    sub: 'Oilkey and BANTLEON',
+    mobileLabel: `${labels.catalogue} (Oilkey and BANTLEON)`,
+    href: url('/catalogue'),
+  },
   {
     label: 'F@ctory Express',
-    sub: '(OKS Catalogue)',
-    mobileLabel: 'F@ctory Express (OKS Catalogue)',
+    sub: 'OKS',
+    mobileLabel: 'F@ctory Express (OKS)',
     href: url('/products/factory-express'),
   },
-  { label: labels.news, sub: subs[4], href: BLOG_URL, external: true },
+  { label: labels.news, sub: subs[3], href: BLOG_URL, external: true },
 ];
 
 const contactItem: NavItem = { label: labels.contact, href: url('/contact') };
@@ -91,7 +97,7 @@ const toggleIdle = 'border-line-dark text-steel';
     </a>
 
     <nav class="hidden lg:block">
-      <ul class="flex items-center gap-[26px]">
+      <ul class="flex items-center gap-5">
         {
           navItems.map((item) => (
             <li>
