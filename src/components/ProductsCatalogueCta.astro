@@ -1,0 +1,26 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Button from './Button.astro';
+import { products } from '../i18n/products';
+import type { Lang } from '../i18n/home';
+
+interface Props {
+  lang: Lang;
+  class?: string;
+}
+
+// Note + buttons into both catalogues and the contact page; shown above and
+// below the category cards on the products page.
+const { lang, class: className } = Astro.props;
+const t = products[lang];
+const url = (path: string) => getRelativeLocaleUrl(lang, path);
+---
+
+<div class:list={['border-line bg-panel rounded-xs border px-[30px] py-10 text-center', className]}>
+  <p class="text-steel text-sm">{t.note}</p>
+  <div class="mt-6 flex flex-wrap justify-center gap-3.5">
+    <Button href={url('/products/factory-express')} variant="primary">{t.feCatalogueCta}</Button>
+    <Button href={url('/catalogue')} variant="primary">{t.catalogueCta}</Button>
+    <Button href={url('/contact')} variant="outline">{t.contactCta}</Button>
+  </div>
+</div>

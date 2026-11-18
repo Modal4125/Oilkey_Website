@@ -1,7 +1,7 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import PageHeader from './PageHeader.astro';
-import Button from './Button.astro';
+import ProductsCatalogueCta from './ProductsCatalogueCta.astro';
 import { products } from '../i18n/products';
 import type { Lang } from '../i18n/home';
 
@@ -13,7 +13,6 @@ const { lang } = Astro.props;
 const t = products[lang];
 const feCatalogueUrl = getRelativeLocaleUrl(lang, '/products/factory-express');
 const catalogueUrl = getRelativeLocaleUrl(lang, '/catalogue');
-const contactUrl = getRelativeLocaleUrl(lang, '/contact');
 const [guideBefore, guideFe, guideMiddle, guideCatalogue, guideAfter] = t.brandGuide;
 ---
 
@@ -29,6 +28,8 @@ const [guideBefore, guideFe, guideMiddle, guideCatalogue, guideAfter] = t.brandG
 
 <section class="py-16 lg:py-20">
   <div class="wrap">
+    <ProductsCatalogueCta lang={lang} class="mb-10" />
+
     <div class="grid gap-6 lg:grid-cols-2">
       {
         t.categories.map((cat, i) => (
@@ -53,13 +54,6 @@ const [guideBefore, guideFe, guideMiddle, guideCatalogue, guideAfter] = t.brandG
       }
     </div>
 
-    <div class="border-line bg-panel mt-10 rounded-xs border px-[30px] py-10 text-center">
-      <p class="text-steel text-sm">{t.note}</p>
-      <div class="mt-6 flex flex-wrap justify-center gap-3.5">
-        <Button href={feCatalogueUrl} variant="primary">{t.feCatalogueCta}</Button>
-        <Button href={catalogueUrl} variant="primary">{t.catalogueCta}</Button>
-        <Button href={contactUrl} variant="outline">{t.contactCta}</Button>
-      </div>
-    </div>
+    <ProductsCatalogueCta lang={lang} class="mt-10" />
   </div>
 </section>
