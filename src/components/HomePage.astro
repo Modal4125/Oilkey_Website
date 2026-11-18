@@ -71,7 +71,7 @@ const productsUrl = getRelativeLocaleUrl(lang, '/products');
     <SectionHeading eyebrow={t.products.eyebrow} intro={t.products.intro}>
       {t.products.heading}
     </SectionHeading>
-    <div class="grid gap-5 sm:grid-cols-2">
+    <div class="grid gap-5 md:grid-cols-3">
       {
         t.products.items.map((item) => (
           <ProductCard
