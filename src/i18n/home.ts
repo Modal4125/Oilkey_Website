@@ -90,18 +90,13 @@ export const home: Record<Lang, HomeCopy> = {
       items: [
         {
           icon: 'drop',
-          title: '特殊潤滑油 OKS',
-          body: 'ドイツ OKS 社の特殊潤滑油。高温・高荷重・特殊環境に対応。',
+          title: 'OKS・BANTLEON 特殊潤滑油',
+          body: 'ドイツ OKS 社・BANTLEON 社の潤滑剤。高温・高荷重・特殊環境に対応する特殊潤滑剤から、高性能作動油、建設機械・重機用潤滑剤まで。',
         },
         {
           icon: 'grease-gun',
-          title: 'グリースガン',
-          body: '自社製造の「ジェット」グリースガンシリーズ。',
-        },
-        {
-          icon: 'shield',
-          title: '防錆剤',
-          body: '金属部品の防錆・防食に対応する各種コーティング剤。',
+          title: 'オイルキー自社ブランド製品',
+          body: '「ジェット」グリース、グリースガン、グリースホース・ノズル、グリースニップルなど、自社ブランドの潤滑関連製品。',
         },
       ],
     },
@@ -193,18 +188,13 @@ export const home: Record<Lang, HomeCopy> = {
       items: [
         {
           icon: 'drop',
-          title: 'OKS Specialty Lubricants',
-          body: 'Specialty lubricants from OKS Germany, engineered for high temperature, high load, and demanding environments.',
+          title: 'OKS and BANTLEON Specialty Lubricants',
+          body: "Lubricants from Germany's OKS and BANTLEON — specialty lubricants for high temperature, high load, and demanding environments, plus high-performance hydraulic fluids and heavy-machinery lubricants.",
         },
         {
           icon: 'grease-gun',
-          title: 'Grease Guns',
-          body: 'Our own "Jet" grease gun series, made in-house.',
-        },
-        {
-          icon: 'shield',
-          title: 'Corrosion Inhibitors',
-          body: 'Coatings that protect metal parts from rust and corrosion.',
+          title: 'Oilkey Branded Products',
+          body: 'Our own Oilkey brand: "Jet" greases, grease guns, grease hoses and nozzles, grease nipples, and more.',
         },
       ],
     },
