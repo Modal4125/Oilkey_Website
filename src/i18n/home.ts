@@ -85,7 +85,7 @@ export const home: Record<Lang, HomeCopy> = {
     products: {
       eyebrow: 'PRODUCTS',
       heading: '取扱製品',
-      intro: '特殊潤滑油から防錆剤まで。詳細は取扱製品ページをご覧ください。',
+      intro: '特殊潤滑油から注油機器まで。詳細は取扱製品ページをご覧ください。',
       linkLabel: '詳しく見る →',
       items: [
         {
@@ -183,7 +183,7 @@ export const home: Record<Lang, HomeCopy> = {
       eyebrow: 'PRODUCTS',
       heading: 'Products',
       intro:
-        'From specialty lubricants to corrosion protection. See the products page for the full range.',
+        'From specialty lubricants to lubrication equipment. See the products page for the full range.',
       linkLabel: 'Learn more →',
       items: [
         {
