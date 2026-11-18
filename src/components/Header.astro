@@ -81,7 +81,7 @@ const toggleIdle = 'border-line-dark text-steel';
 ---
 
 <header class="border-line bg-paper/92 sticky top-0 z-50 border-b backdrop-blur-[8px]">
-  <div class="wrap flex h-[76px] items-center justify-between">
+  <div class="wrap flex h-[76px] items-center justify-between lg:h-[88px]">
     <a
       href={url('/')}
       class="flex items-center dark:rounded-xs dark:bg-white dark:px-2 dark:py-1"
@@ -97,8 +97,7 @@ const toggleIdle = 'border-line-dark text-steel';
     </a>
 
     <nav class="hidden lg:block">
-      {/* Top-aligned so labels share a line whether or not an item has a sub-label. */}
-      <ul class="flex items-start gap-5">
+      <ul class="flex items-center gap-5">
         {
           navItems.map((item) => (
             <li>
@@ -109,8 +108,10 @@ const toggleIdle = 'border-line-dark text-steel';
                 class="text-steel hover:text-amber block text-sm font-medium whitespace-nowrap transition-colors"
               >
                 {item.label}
+                {/* Zero-height so the sub-label hangs below without moving the label off
+                    centre; it still sets the item's width so neighbours don't overlap. */}
                 {item.sub && (
-                  <span class="block text-[11px] font-normal whitespace-nowrap opacity-60">
+                  <span class="block h-0 text-[11px] font-normal whitespace-nowrap opacity-60">
                     {item.sub}
                   </span>
                 )}
@@ -118,7 +119,7 @@ const toggleIdle = 'border-line-dark text-steel';
             </li>
           ))
         }
-        <li class="self-center">
+        <li>
           <a
             href={contactItem.href}
             class="bg-amber hover:bg-amber-bright rounded-xs px-[18px] py-[9px] text-[13px] font-bold text-white transition-colors"

@@ -102,7 +102,7 @@ const productListSchema = {
   {/* Sticky category rail — rides alongside the tables down to the last one. */}
   <nav
     aria-label={t.categoriesLabel}
-    class="sticky top-24 hidden h-fit max-h-[calc(100vh-8rem)] w-44 shrink-0 self-start overflow-y-auto pt-10 lg:block lg:pt-14"
+    class="sticky top-24 hidden h-fit max-h-[calc(100vh-8rem)] w-44 shrink-0 self-start overflow-y-auto pt-10 lg:top-28 lg:block lg:pt-14"
   >
     <div class="text-steel mb-2.5 font-mono text-[11px] font-semibold tracking-[0.1em] uppercase">
       {t.categoriesLabel}
@@ -130,7 +130,7 @@ const productListSchema = {
   <div class="min-w-0 flex-1">
     {
       catalogue.map((cat, i) => (
-        <section id={cat.id} class="scroll-mt-24 py-10 lg:py-14">
+        <section id={cat.id} class="scroll-mt-24 py-10 lg:scroll-mt-28 lg:py-14">
           <div class="text-amber mb-3 flex items-baseline gap-3 font-mono text-xs font-semibold">
             <span>{String(i + 1).padStart(2, '0')}</span>
             <span>{cat.tag}</span>
@@ -142,7 +142,7 @@ const productListSchema = {
               {t.countSuffix}
             </span>
           </h2>
-          <div class="border-line max-h-[calc(100vh-140px)] overflow-auto rounded-xs border">
+          <div class="border-line max-h-[calc(100vh-140px)] overflow-auto rounded-xs border lg:max-h-[calc(100vh-152px)]">
             {/* border-separate keeps the header's bottom border attached to the
               sticky <th>; with border-collapse the border belongs to the table
               and scrolls away underneath it. */}
