@@ -159,11 +159,11 @@ def page(c, *, form_id, title, title_en, ref_label, table_cols, shaded_last):
     c.line(M, fy + 26, W - M, fy + 26)
     c.setFillColor(colors.black)
     c.setFont(JP, 8)
-    c.drawString(M, fy + 12, "オイルキー株式会社　〒593-8314 大阪府堺市西区太平寺617")
+    c.drawString(M, fy + 12, "オイルキー株式会社　〒593-8314 大阪府堺市西区太平寺617-2F")
     c.drawString(M, fy, "TEL 072-284-1711　FAX 072-298-7790")
     c.setFillColor(GREY)
     c.setFont(JP, 7)
-    c.drawString(M, fy - 13, "受付時間 9:00〜17:00（土・日・祝日・年末年始・夏期休業・棚卸期間を除く）／ 午後3時までのご注文は当日発送（在庫品）／ 5万円以上送料無料")
+    c.drawString(M, fy - 13, "受付時間 9:00〜17:00（土・日・祝日・年末年始・夏期休業・棚卸期間を除く）／ 午後2時までのご注文は当日発送（在庫品）／ 6万円以上送料無料")
     c.showPage()
 
 
