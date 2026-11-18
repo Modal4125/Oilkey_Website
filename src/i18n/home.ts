@@ -98,6 +98,11 @@ export const home: Record<Lang, HomeCopy> = {
           title: 'オイルキー自社ブランド製品',
           body: '「ジェット」グリース、グリースガン、グリースホース・ノズル、グリースニップルなど、自社ブランドの潤滑関連製品。',
         },
+        {
+          icon: 'shield',
+          title: '防錆剤',
+          body: '金属部品の防錆・防食に対応する各種コーティング剤。',
+        },
       ],
     },
     apps: {
@@ -195,6 +200,11 @@ export const home: Record<Lang, HomeCopy> = {
           icon: 'grease-gun',
           title: 'Oilkey Branded Products',
           body: 'Our own Oilkey brand: "Jet" greases, grease guns, grease hoses and nozzles, grease nipples, and more.',
+        },
+        {
+          icon: 'shield',
+          title: 'Corrosion Inhibitors',
+          body: 'Coatings that protect metal parts from rust and corrosion.',
         },
       ],
     },
