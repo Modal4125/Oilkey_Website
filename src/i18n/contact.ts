@@ -82,7 +82,7 @@ export const contact: Record<Lang, ContactCopy> = {
     panel: {
       title: 'Direct Contact / 直接のお問い合わせ',
       addressLabel: '所在地',
-      address: '〒593-8314 大阪府堺市西区太平寺617',
+      address: '〒593-8314 大阪府堺市西区太平寺617-2F',
       telLabel: 'TEL',
       tel: '072-284-1711',
       hoursLabel: '受付時間',
@@ -142,7 +142,7 @@ export const contact: Record<Lang, ContactCopy> = {
     panel: {
       title: 'Direct Contact',
       addressLabel: 'Address',
-      address: '617 Taiheiji, Nishi-ku, Sakai, Osaka 593-8314, Japan',
+      address: '617-2F Taiheiji, Nishi-ku, Sakai, Osaka 593-8314, Japan',
       telLabel: 'Tel',
       tel: '+81-72-284-1711',
       hoursLabel: 'Hours',
